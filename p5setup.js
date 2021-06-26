@@ -1,13 +1,16 @@
+const WIDTH = 1536;
+const HEIGHT = 864;
+
 function setup() {
-  createCanvas(1536, 864);
+  createCanvas(WIDTH, HEIGHT);
 }
 
 window.setup = setup;
 window.addEventListener("resize", function () {
-  resizeCanvas(windowWidth, windowHeight);
+  resizeCanvas(WIDTH, HEIGHT);
   clear();
 });
 
 new p5();
-var width = windowWidth;
-var height = windowHeight;
+var width = WIDTH;
+var height = HEIGHT;
