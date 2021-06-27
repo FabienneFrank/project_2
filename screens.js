@@ -27,8 +27,11 @@ export default class Screens {
     textFont(myFontBold);
     text("SCUBE", this.width / 2, 250);
     this.startButton.default();
+    this.startButton.hitTest();
   }
-  gameScreen() {}
+  gameScreen() {
+    this.exitPopUp();
+  }
   endScreen() {}
   exitPopUp() {}
   tutorial() {}
