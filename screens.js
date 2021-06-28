@@ -28,11 +28,11 @@ export default class Screens {
     text("SCUBE", this.width / 2, 250);
     this.startButton.default();
     this.startButton.hitTest();
-  }
+  } // Jenny
   gameScreen() {
     this.exitPopUp();
   }
-  endScreen() {}
+  endScreen() {} // Jenny
   exitPopUp() {}
-  tutorial() {}
+  tutorial() {} //Fabi
 }
