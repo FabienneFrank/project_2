@@ -8,18 +8,52 @@ export default class Visualize {
     this.y = y;
     //--------------------------
     this.keyAction = new KeyAction();
+    this.interactionDict = new Map();
     //--------------------------
+    this.mousePositionColor = [];
+    this.interactionKey = '';
+
     let fischArray = [];
     let koralleArray = [];
     let geisternetzArray = [];
     let plastikArray = [];
     let beifangArray = [];
   }
-  displayAll() {} //displayAllAreas, displayAllEntities, cube
-  displayAllAreas() {} //click areas (boot,netz,hafen,wasseroberfläche)
-  displayAllEntities() {} //arrays auslesen und rendern
-  displayParameterBox() {} //anzeige in der man die parameter ändern kann. get farbcode from checkKey
+
+  displayInteractionArea(){} //zeigt alle interactionAreas an
+
+  //checkt Farben an der mausposition und pusht diese als Array [r,g,b,a]
+  colorCheck(){
+    this.mousePositionColor = get(mouseX,mouseY);
+  } 
+
+  //muss auserhalb der draw aufgerufen werden, setzt Keys und dazugehörige Farbcodes
+  interactionDictonary(){
+    this.interactionDict.set('boat', [100,90,110,255]);
+    this.interactionDict.set('haus', [100,80,120,255]);
+  }
+
+  //vergleicht zwei Arrays
+  compareArrays(array1,array2){
+    for (let i = 0; i <= array1.length; i++){
+      if(array1[i] !== array2[i])
+      return false;
+    }
+    return true;
+  }
+
+  //Checkt ob ein farbcode gerade angesprochen wird, wenn ja: interactionKey gesetzt
+  checkKey() {
+    this.interactionDict.forEach((value,key) => {
+      if(this.compareArrays(this.mousePositionColor, value) === true){
+        this.interactionKey = key;
+      }
+    });
+  }
+
+  doForKey(/*bekommt interactionKey*/) {} //bei welchem Farbcode soll welche Methode in keyAction ausgeführt werden
+
   calculateEntities() {} //output prozente aus parameterNetwork abfragen und in anzahl an entities umwandeln, (bsp: 80% plastik = 1 Fisch, 60% plastik = 3 fische), anzahl entities in array speichern (3 Fische -> array[fisch1=new Fisch,fisch2=new Fisch,fisch3=new Fisch])
-  checkKey() {} //if clicked check ob und welcher farbcode dahinter steckt; return Farbcode
-  doForKey(/*bekommt Farbcode*/) {} //bei welchem Farbcode soll welche Methode in keyAction ausgeführt werden
+  
+  diaplayVisuals(){} //zeigt die Oberfläche der Simulation an
 }
