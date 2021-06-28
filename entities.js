@@ -1,3 +1,5 @@
+// Jenny Entities Bilder
+
 export class Entities {
   constructor(x, y, width, height) {
     this.x = x;

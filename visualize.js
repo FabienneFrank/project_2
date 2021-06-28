@@ -1,5 +1,6 @@
 import { Fisch, Koralle, Geisternetze, Plastik, Beifang } from "./entities.js";
 import KeyAction from "./keyAction.js";
+// Samu Farbcode Dictionary
 
 export default class Visualize {
   constructor(x, y) {
