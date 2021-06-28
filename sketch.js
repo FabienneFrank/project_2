@@ -16,6 +16,7 @@ window.preload = preload;
 
 let screen = new Screens(width, height);
 let screenState = "start"; // "start","game","end"
+let resizeEndScreenCanvas = true;
 let assets = {
   interactive: {
     boat: "",
@@ -71,8 +72,14 @@ function draw() {
   } else if (screenState === "game") {
     screen.gameScreen();
   } else if (screenState === "end") {
+    if (resizeEndScreenCanvas) {
+      endscreenResize();
+    }
     screen.endScreen();
   }
 }
-
+function endscreenResize() {
+  resizeCanvas(width, height * 2, true);
+  resizeEndScreenCanvas = false;
+}
 function mouseClicked() {}
