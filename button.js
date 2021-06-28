@@ -1,3 +1,4 @@
+//ich bin ein Test
 let myFontDefault = loadFont("font/D-DINCondensed.otf");
 let myFontBold = loadFont("font/D-DINCondensed-Bold.otf");
 export default class Button {
