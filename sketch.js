@@ -11,7 +11,9 @@ rot: rgb(251, 84, 82)
 /*-----------------------------------*/
 
 window.draw = draw;
-let screen = new Screens(0, 0, 1536, 864);
+window.mouseClicked = mouseClicked;
+
+let screen = new Screens(0, 0, width, height);
 let screenState = "start"; // "start","game","end"
 
 /*-----------------------------------*/
@@ -25,3 +27,5 @@ function draw() {
     screen.endScreen();
   }
 }
+
+function mouseClicked() {}

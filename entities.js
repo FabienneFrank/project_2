@@ -1,4 +1,4 @@
-// Jenny Entities Bilder
+// Samu Entities Bilder
 
 export class Entities {
   constructor(x, y, width, height) {
