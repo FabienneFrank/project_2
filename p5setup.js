@@ -1,16 +1,16 @@
-const WIDTH = 1536;
-const HEIGHT = 864;
-
 function setup() {
-  createCanvas(WIDTH, HEIGHT);
+  let scubaCanvas = createCanvas(windowWidth, windowHeight);
+  scubaCanvas.parent('scube');
+  frameRate(30);
 }
 
 window.setup = setup;
+
 window.addEventListener("resize", function () {
-  resizeCanvas(WIDTH, HEIGHT);
+  resizeCanvas(width, height);
   clear();
 });
 
 new p5();
-var width = WIDTH;
-var height = HEIGHT;
+var width = windowWidth;
+var height = windowHeight;
