@@ -39,6 +39,11 @@ let assets = {
       fish3: "",
       haus: "",
       coral: "",
+      plasticStage1: "",
+      plasticStage2: "",
+      plasticStage3: "",
+      plasticStage4: "",
+      plasticStage5: "",
     },
   },
 };
@@ -60,6 +65,21 @@ function preload() {
   assets.visual.default.fish3 = loadImage("assets/origamiFisch3Grün.png");
   assets.visual.default.haus = loadImage("assets/origamiHausGrün.png");
   assets.visual.default.coral = loadImage("assets/origamiKoralleGrün.png");
+  assets.visual.default.plasticStage1 = loadImage(
+    "assets/origamiplasticstage1.png"
+  );
+  assets.visual.default.plasticStage2 = loadImage(
+    "assets/origamiplasticstage2.png"
+  );
+  assets.visual.default.plasticStage3 = loadImage(
+    "assets/origamiplasticstage3.png"
+  );
+  assets.visual.default.plasticStage4 = loadImage(
+    "assets/origamiplasticstage4.png"
+  );
+  assets.visual.default.plasticStage5 = loadImage(
+    "assets/origamiplasticstage5.png"
+  );
 
   assets.interactive.boat = loadImage("assets/interaktionsBoot.png"); //(100,90,110,255) rgba des interaktions Bereichs
   assets.interactive.haus = loadImage("assets/interaktionsHaus.png"); //(100,80,120,255) rgba des interaktions Bereichs

@@ -29,7 +29,7 @@ export default class Visualize {
 
   //checkt Farben an der mausposition und pusht diese als Array [r,g,b,a]
   colorCheck() {
-    this.mousePositionColor = get(mouseX, mouseY);
+    this.mousePositionColor = get(mouseX, mouseY); //array
   }
 
   //muss auserhalb der draw aufgerufen werden, setzt Keys und dazugehörige Farbcodes
@@ -68,54 +68,66 @@ export default class Visualize {
       this.parameter.co2 * 0.2;
     this.koralle =
       this.parameter.co2 * 0.5 + this.parameter.schleppnetzfischerei * 0.5;
-    this.geisternetz = this.parameter.geisternetze;
-    this.plastik = this.parameter.plastik;
+    this.plastik =
+      this.parameter.plastik * 0.5 + this.parameter.geisternetze * 0.5;
     this.beifang = this.parameter.beifang;
     //fisch
-    if (this.fisch <= 0) {
-      for (let i = fischarray.length; i <= 20; i++) {
-        this.fischArray.push(/*fischbild */);
+    let fischNumEntities = 20;
+    for (let j = 0; j <= 100; j += 10) {
+      if (this.fisch === 0 || (this.fisch > j && this.fisch <= j + 10)) {
+        for (let i = this.fischArray.length; i < fischNumEntities; i++) {
+          this.fischArray.push(new Fisch(0, 0, 100, 100)); //x,y,width,height muss noch angepasst werden
+        }
+      } else if (this.fisch === 100) {
+        this.fischArray = [];
+        fischNumEntities -= 2;
       }
-    } else if (this.fisch > 0 && this.fisch <= 0) {
-      for (let i = fischarray.length; i <= 18; i++) {
-        this.fischArray.push(/*fischbild */);
+    }
+    //koralle
+    for (let i = 0; i < 20; i++) {
+      this.koralleArray.push(new Koralle(0, 0, 100, 100)); //x,y,width,height muss noch angepasst werden
+    }
+    for (let j = 0; j <= 100; j += 10) {
+      if (this.koralle === 0 || (this.koralle > j && this.koralle <= j + 10)) {
+        for (let i = 0; i < this.koralleArray.length; i++) {
+          this.koralleArray[i].changeColor();
+        }
+      } else if (this.koralle === 100) {
+        //farbe grau
       }
-    } else if (this.fisch > 10 && this.fisch <= 20) {
-      for (let i = fischarray.length; i <= 16; i++) {
-        this.fischArray.push(/*fischbild */);
+    }
+    //plastik
+    this.plastikArray = [
+      /*eine stage pro index*/
+    ];
+    for (let j = 0; j <= 100; j += 20) {
+      if (this.plastik === 0) {
+        //display no array
+      } else if (this.plastik > 0 && this.plastik <= 20) {
+        //display array to index 0
+      } else if (this.plastik > 20 && this.plastik <= 40) {
+        //display array to index 1
+      } else if (this.plastik > 40 && this.plastik <= 60) {
+        //display array to index 2
+      } else if (this.plastik > 60 && this.plastik <= 80) {
+        //display array to index 3
+      } else if (this.plastik > 80 && this.plastik <= 100) {
+        //display array to index 4
       }
-    } else if (this.fisch > 20 && this.fisch <= 30) {
-      for (let i = fischarray.length; i <= 14; i++) {
-        this.fischArray.push(/*fischbild */);
+    }
+    //beifang
+    let beifangNumEntities = 20;
+    for (let j = 0; j <= 100; j += 10) {
+      if (this.beifang === 0 || (this.beifang > j && this.beifang <= j + 10)) {
+        for (let i = this.beifangArray.length; i < beifangNumEntities; i++) {
+          this.beifangArray.push(new Beifang(0, 0, 100, 100)); //x,y,width,height muss noch angepasst werden
+        }
+      } else if (this.beifang === 100) {
+        this.beifangArray = [];
       }
-    } else if (this.fisch > 30 && this.fisch <= 40) {
-      for (let i = fischarray.length; i <= 12; i++) {
-        this.fischArray.push(/*fischbild */);
-      }
-    } else if (this.fisch > 40 && this.fisch <= 50) {
-      for (let i = fischarray.length; i <= 10; i++) {
-        this.fischArray.push(/*fischbild */);
-      }
-    } else if (this.fisch > 50 && this.fisch <= 60) {
-      for (let i = fischarray.length; i <= 8; i++) {
-        this.fischArray.push(/*fischbild */);
-      }
-    } else if (this.fisch > 60 && this.fisch <= 70) {
-      for (let i = fischarray.length; i <= 6; i++) {
-        this.fischArray.push(/*fischbild */);
-      }
-    } else if (this.fisch > 70 && this.fisch <= 80) {
-      for (let i = fischarray.length; i <= 4; i++) {
-        this.fischArray.push(/*fischbild */);
-      }
-    } else if (this.fisch > 80 && this.fisch < 100) {
-      for (let i = fischarray.length; i <= 2; i++) {
-        this.fischArray.push(/*fischbild */);
-      }
-    } else if (this.fisch >= 100) {
-      this.fischArray = [];
+      beifangNumEntities -= 2;
     }
   } //Jenny: output prozente aus parameterNetwork abfragen und in anzahl an entities umwandeln, (bsp: 80% plastik = 1 Fisch, 60% plastik = 3 fische), anzahl entities in array speichern (3 Fische -> array[fisch1=new Fisch,fisch2=new Fisch,fisch3=new Fisch])
 
-  diaplayVisuals() {} //zeigt die Oberfläche der Simulation an
+  displayVisuals() {} //zeigt die Oberfläche der Simulation an
 }
