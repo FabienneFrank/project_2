@@ -13,8 +13,6 @@ export default class Screens {
       "Super gemacht! Das Ziel ist erreicht, aber kannst du das Ziel auch übertreffen?",
       "WOW das lief ja fantastisch!",
     ];
-    this.tippstext = [];
-
     //--------------------------
     this.visualize = new Visualize(this.x, this.y);
     this.startButton = new Button(
@@ -99,6 +97,7 @@ export default class Screens {
   } // Jenny
   gameScreen() {
     this.exitPopUp();
+    this.visualize.calculateEntities();
   }
   endScreen() {
     //Scoreboard
