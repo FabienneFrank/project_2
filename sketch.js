@@ -15,7 +15,7 @@ window.mouseClicked = mouseClicked;
 window.preload = preload;
 
 let screen = new Screens(width, height);
-let screenState = "start"; // "start","game","end"
+let screenState = "tutorial"; // "start","tutorial","game","end"
 let resizeEndScreenCanvas = true;
 let assets = {
   interactive: {
@@ -69,6 +69,8 @@ function draw() {
   background(5, 85, 83);
   if (screenState === "start") {
     screen.startScreen();
+  } else if (screenState === "tutorial") {
+    screen.tutorial();
   } else if (screenState === "game") {
     screen.gameScreen();
   } else if (screenState === "end") {
@@ -82,4 +84,11 @@ function endscreenResize() {
   resizeCanvas(width, height * 2, true);
   resizeEndScreenCanvas = false;
 }
-function mouseClicked() {}
+function mouseClicked() {
+  if (state === "start" && interactionarea.round === true) {
+    state = "tutorial";
+  }
+  if (state === "tutorial" && interactionarea.exitsquare === true) {
+    state = "start";
+  }
+}
