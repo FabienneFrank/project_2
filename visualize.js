@@ -43,6 +43,8 @@ export default class Visualize {
     this.interactionDict.set("replaybutton", [30, 140, 160, 255]);
     this.interactionDict.set("scrolldownbutton", [30, 150, 160, 255]);
     this.interactionDict.set("scrollupbutton", [30, 160, 160, 255]);
+    this.interactionDict.set("tutorialbutton", [30, 170, 160, 255]);
+    this.interactionDict.set("backbutton", [30, 180, 160, 255]);
   }
 
   //vergleicht zwei Arrays

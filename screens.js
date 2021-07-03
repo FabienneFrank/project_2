@@ -15,6 +15,7 @@ export default class Screens {
     ];
     //--------------------------
     this.visualize = new Visualize(this.x, this.y);
+
     this.startButton = new Button(
       this.width / 2,
       (this.height * 2) / 3,
@@ -23,6 +24,7 @@ export default class Screens {
       color(30, 130, 160, 255),
       "default"
     );
+
     this.replayButton = new Button(
       this.width / 2,
       this.height / 2 + 75,
@@ -31,6 +33,7 @@ export default class Screens {
       color(30, 140, 160, 255),
       "default"
     );
+
     this.scrollDownButton = new Button(
       this.width / 2,
       this.height / 2 + 200,
@@ -39,6 +42,7 @@ export default class Screens {
       color(30, 150, 160, 255),
       "round"
     );
+
     this.scrollUpButton = new Button(
       this.width / 2,
       this.height / 2 + 1200,
@@ -46,6 +50,24 @@ export default class Screens {
       "ScrollUp",
       color(30, 160, 160, 255),
       "round"
+    );
+
+    this.tutorialButton = new Button(
+      this.width / 2 + 600,
+      this.height / 2 + 100,
+      color(247, 240, 226),
+      "?",
+      color(30, 170, 160, 255),
+      "round"
+    );
+
+    this.exitButton = new Button(
+      this.width / 2,
+      this.height / 2,
+      color(247, 240, 226),
+      "",
+      color(30, 180, 160, 255),
+      "exitsquare"
     );
   }
   startScreen() {
@@ -58,47 +80,153 @@ export default class Screens {
     text("SCUBE", this.width / 2, 250);
     //Einleitungstext
     fill(247, 240, 226);
+    textSize(60);
+    text(
+      "Tauche ein in die Welt von morgen",
+      this.width / 2,
+      this.height / 2 - 220
+    );
     textSize(40);
     text(
-      "Tauche ein in die Welt von Morgen",
-      this.width / 2,
+      "Schlüpfe in die Rolle eines",
+      this.width / 2 - 455,
       this.height / 2 - 100
     );
     text(
-      "Steig in die Rolle eines",
-      this.width / 2 - 430,
-      this.height / 2 - 50
+      "und erfahre, wie die Meere von morgen",
+      this.width / 2 + 360,
+      this.height / 2 - 100
     );
     text(
-      "und finde heraus wie die Welt durch",
-      this.width / 2 + 341,
-      this.height / 2 - 50
-    );
-    text(
-      "Zusammenarbeit aussehen könnte. Werde Teil der Rettungsmission und erreiche das Ziel 14 der",
+      "aussehen könnten. Werde Teil einer großen Rettungsmission und erreiche das Ziel 14 der",
       this.width / 2,
+      this.height / 2 - 50
+    );
+    text(
+      ", um unsere Meere zu erhalten.",
+      this.width / 2 + 93,
       this.height / 2
     );
     text(
-      "Das Leben Unterwasser erhalten",
-      this.width / 2 + 93,
-      this.height / 2 + 50
+      "Bereit für einen Tauchgang?",
+      this.width / 2 + 10,
+      this.height / 2 + 120
     );
+
     fill(251, 84, 82);
     text(
       "global politischen Akteurs",
       this.width / 2 - 90,
-      this.height / 2 - 50
+      this.height / 2 - 100
     );
-    text("Agenda 2030: ", this.width / 2 - 222, this.height / 2 + 50);
+    text("Agenda 2030", this.width / 2 - 205, this.height / 2);
     //Start-Button
     this.startButton.interactionarea();
     this.startButton.default();
+
+    this.tutorialButton.interactionarea();
+    this.tutorialButton.help();
   } // Jenny
+
+  tutorial() {
+    noStroke();
+    fill(251, 84, 82);
+    rect(this.width / 2 - 600, this.height / 2 - 450, 1200, 80, 20, 20, 0, 0);
+    fill(247, 240, 226);
+    rect(this.width / 2 - 600, this.height / 2 - 370, 1200, 780, 0, 0, 20, 20);
+    fill(247, 240, 226);
+    textFont(myFontBold);
+    textSize(70);
+    text("Tutorial", this.width / 2 - 100, this.height / 2 - 390);
+    textSize(35);
+    fill(5, 85, 83);
+    text(
+      "Als global politischer Akteur trägst Du große Verantwortung, doch Du weißt noch nicht, wie",
+      this.width / 2 - 550,
+      this.height / 2 - 280
+    );
+    text(
+      "Du Deine Entscheidungen in die Tat umsetzen kannst? ",
+      this.width / 2 - 300,
+      this.height / 2 - 240
+    );
+    text(
+      "Keine Panik, um unsere Meere zu retten ist vor allem eines gefragt: Zusammenhalt,",
+      this.width / 2 - 500,
+      this.height / 2 - 200
+    );
+    text(
+      "deshalb helfen wir Dir gerne!",
+      this.width / 2 - 170,
+      this.height / 2 - 160
+    );
+    text(
+      "Mit dem Starten der Simulation präsentiert Scube Dir einen Küstenabschnitt.",
+      this.width / 2 - 460,
+      this.height / 2 - 80
+    );
+    text(
+      "In diesem befinden sich versteckte Parameter, welche Einfluss auf den Küstenabschnitt nehmen.",
+      this.width / 2 - 575,
+      this.height / 2 - 40
+    );
+    text(
+      "Ob dieser jedoch positiv oder negativ ausfällt, liegt in Deiner Hand.",
+      this.width / 2 - 400,
+      this.height / 2
+    );
+    text(
+      "Bewegst Du nun Deinen Cursor über den Bildschirm, so kannst Du",
+      this.width / 2 - 390,
+      this.height / 2 + 40
+    );
+    text(
+      "mithilfe des Farbwechsels alle Parameter entdecken.",
+      this.width / 2 - 330,
+      this.height / 2 + 80
+    );
+    text(
+      "Beim Rechtsklick auf einen Parameter bekommst Du den jeweiligen Sachverhalt erklärt",
+      this.width / 2 - 520,
+      this.height / 2 + 160
+    );
+    text(
+      "und kannst Dich für dessen Erhöhung oder Senkung entscheiden.",
+      this.width / 2 - 390,
+      this.height / 2 + 200
+    );
+    text(
+      "Gemessen werden Deine Entscheidungen mittels der Nachhaltigkeitsskala rechts",
+      this.width / 2 - 480,
+      this.height / 2 + 240
+    );
+    text(
+      "neben dem Küstenabschnitt.",
+      this.width / 2 - 160,
+      this.height / 2 + 280
+    );
+    text(
+      "So, nun solltest Du Deiner neuen Rolle aber gewachsen sein, bereit?",
+      this.width / 2 - 400,
+      this.height / 2 + 360
+    );
+
+    fill(251, 84, 82);
+    text("versteckte Parameter", this.width / 2 - 290, this.height / 2 - 40);
+    text("in Deiner Hand.", this.width / 2 + 213, this.height / 2);
+    text("Erhöhung", this.width / 2 - 62, this.height / 2 + 200);
+    text("Senkung", this.width / 2 + 114, this.height / 2 + 200);
+    text("Nachhaltigkeitsskala", this.width / 2 + 150, this.height / 2 + 240);
+
+    this.exitButton.interactionarea();
+    this.exitButton.exit();
+  } //Fabi
+
   gameScreen() {
     this.exitPopUp();
     this.visualize.calculateEntities();
   }
+
   endScreen() {
     //Scoreboard
     stroke(5, 85, 83);
@@ -145,8 +273,9 @@ export default class Screens {
     this.scrollUpButton.interactionarea();
     this.scrollUpButton.scroll();
   } // Jenny: Get Score
+
   exitPopUp() {}
-  tutorial() {} //Fabi
+
   displayTipps() {
     textAlign(CENTER);
     noStroke();

@@ -10,6 +10,7 @@ export default class Button {
     this.interactioncolor = interactioncolor;
     this.type = type;
   }
+
   default() {
     //default
     fill(5, 85, 83);
@@ -22,7 +23,28 @@ export default class Button {
     textFont(myFontBold);
     text(this.lable, this.x, this.y + 60);
   } // start, replay, home, back to game
-  exit() {} //exit pfeil
+
+  exit() {
+    stroke(this.color);
+    strokeWeight(5);
+    fill(251, 84, 82);
+    rect(this.x - 580, this.y - 445, 80, 65, 20);
+    line(this.x - 560, this.y - 410, this.x - 520, this.y - 410);
+    line(this.x - 560, this.y - 410, this.x - 540, this.y - 430);
+    line(this.x - 560, this.y - 410, this.x - 540, this.y - 390);
+  } //exit arrow
+
+  help() {
+    //tutorial
+    fill(5, 85, 83);
+    strokeWeight(3);
+    stroke(this.color);
+    ellipse(this.x, this.y + 180, 50);
+    textSize(40);
+    textFont(myFontBold);
+    text(this.lable, this.x, this.y + 195);
+  } //start screen to tutorial
+
   scroll() {
     fill(5, 85, 83);
     strokeWeight(5);
@@ -37,6 +59,7 @@ export default class Button {
       line(this.x + 10, this.y + 185, this.x, this.y + 175);
     }
   } //endscreen runde buttons zu Tips scrollen
+
   interactionarea() {
     if (this.type === "default") {
       fill(this.interactioncolor);
@@ -45,6 +68,9 @@ export default class Button {
       fill(this.interactioncolor);
       ellipse(this.x, this.y + 180, 50);
     } else if (this.type === "square") {
+    } else if (this.type === "exitsquare") {
+      fill(this.interactioncolor);
+      rect(this.x - 580, this.y - 445, 80, 65, 20);
     }
     return this.interactioncolor;
   }
