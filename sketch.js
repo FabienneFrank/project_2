@@ -14,9 +14,7 @@ window.draw = draw;
 window.mouseClicked = mouseClicked;
 window.preload = preload;
 
-
-let screenState = "tutorial"; // "start","tutorial","game","end"
-
+let screenState = "start"; // "start","tutorial","game","end"
 let resizeEndScreenCanvas = true;
 export let assets = {
   interactive: {
@@ -27,6 +25,7 @@ export let assets = {
     active: {
       boat: "",
       haus: "",
+      hafenkontrolle: "",
     },
     default: {
       boat: "",
@@ -51,6 +50,7 @@ export let assets = {
       koralle2Stage3: "",
       koralle2Stage4: "",
       koralle2Stage5: "",
+      hafenkontrolle: "",
     },
   },
 };
@@ -60,6 +60,9 @@ export let assets = {
 function preload() {
   assets.visual.active.boat = loadImage("assets/origamiBootRot.png");
   assets.visual.active.haus = loadImage("assets/origamiHausRot.png");
+  assets.visual.active.hafenkontrolle = loadImage(
+    "assets/hafenkontrollenClicked.png"
+  );
 
   assets.visual.default.boat = loadImage("assets/origamiBootGrün.png");
   assets.visual.default.fish1 = loadImage("assets/origamiFisch1Grün.png");
@@ -113,6 +116,9 @@ function preload() {
   assets.visual.default.koralle2Stage5 = loadImage(
     "assets/origamikoralle2stage5.png"
   );
+  assets.visual.default.hafenkontrolle = loadImage(
+    "assets/hafenkontrollenDefault.png"
+  );
 
   assets.interactive.boat = loadImage("assets/interaktionsBoot.png"); //(100,90,110,255) rgba des interaktions Bereichs
   assets.interactive.haus = loadImage("assets/interaktionsHaus.png"); //(100,80,120,255) rgba des interaktions Bereichs
@@ -138,10 +144,10 @@ function endscreenResize() {
   resizeEndScreenCanvas = false;
 }
 function mouseClicked() {
-  if (state === "start" && interactionarea.round === true) {
+  /*if (state === "start" && interactionarea.round === true) {
     state = "tutorial";
   }
   if (state === "tutorial" && interactionarea.exitsquare === true) {
     state = "start";
-  }
+  }*/
 }
