@@ -14,7 +14,7 @@ window.draw = draw;
 window.mouseClicked = mouseClicked;
 window.preload = preload;
 
-let screenState = "start"; // "start","tutorial","game","end"
+let screenState = "tutorial"; // "start","tutorial","game","end"
 let resizeEndScreenCanvas = true;
 export let assets = {
   interactive: {
