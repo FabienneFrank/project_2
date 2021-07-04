@@ -1,5 +1,6 @@
 import Visualize from "./visualize.js";
 import Button from "./button.js";
+import ParameterBox from "./parameterBox.js";
 let myFontDefault = loadFont("font/D-DINCondensed.otf");
 let myFontBold = loadFont("font/D-DINCondensed-Bold.otf");
 
@@ -14,8 +15,13 @@ export default class Screens {
       "WOW das lief ja fantastisch!",
     ];
     //--------------------------
-    this.visualize = new Visualize(this.x, this.y);
-
+    this.visualize = new Visualize(this.width / 2, this.height / 2);
+    this.ParameterBox = new ParameterBox(
+      this.width / 2 + 200,
+      this.height / 2 - 350,
+      480,
+      680
+    );
     this.startButton = new Button(
       this.width / 2,
       (this.height * 2) / 3,
@@ -53,8 +59,8 @@ export default class Screens {
     );
 
     this.tutorialButton = new Button(
-      this.width / 2 + 600,
-      this.height / 2 + 100,
+      this.width - 80,
+      this.height - 1100,
       color(247, 240, 226),
       "?",
       color(30, 170, 160, 255),
@@ -77,7 +83,7 @@ export default class Screens {
     textAlign(CENTER);
     textSize(200);
     textFont(myFontBold);
-    text("SCUBE", this.width / 2, 250);
+    text("SCUBE", this.width / 2, this.height / 2 - 300);
     //Einleitungstext
     fill(247, 240, 226);
     textSize(60);
@@ -224,7 +230,7 @@ export default class Screens {
 
   gameScreen() {
     this.exitPopUp();
-    this.visualize.calculateEntities();
+    this.ParameterBox.background();
   }
 
   endScreen() {
