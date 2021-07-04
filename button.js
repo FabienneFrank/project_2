@@ -26,12 +26,13 @@ export default class Button {
 
   exit() {
     stroke(this.color);
-    strokeWeight(5);
+    strokeWeight(4);
     fill(251, 84, 82);
-    rect(this.x - 580, this.y - 445, 80, 65, 20);
-    line(this.x - 560, this.y - 410, this.x - 520, this.y - 410);
-    line(this.x - 560, this.y - 410, this.x - 540, this.y - 430);
-    line(this.x - 560, this.y - 410, this.x - 540, this.y - 390);
+    rect(this.x - 580, this.y - 445, 80, 65, 8);
+    strokeWeight(6);
+    line(this.x - 560, this.y - 410, this.x - 520, this.y - 410); //line middle
+    line(this.x - 560, this.y - 410, this.x - 540, this.y - 427); //line top
+    line(this.x - 560, this.y - 410, this.x - 540, this.y - 393); //line bottom
   } //exit arrow
 
   help() {
@@ -70,7 +71,7 @@ export default class Button {
     } else if (this.type === "square") {
     } else if (this.type === "exitsquare") {
       fill(this.interactioncolor);
-      rect(this.x - 580, this.y - 445, 80, 65, 20);
+      rect(this.x - 580, this.y - 445, 80, 65, 8);
     }
     return this.interactioncolor;
   }

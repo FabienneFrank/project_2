@@ -1,3 +1,4 @@
+import { assets } from "./sketch.js";
 import Visualize from "./visualize.js";
 import Button from "./button.js";
 import ParameterBox from "./parameterBox.js";
@@ -226,6 +227,22 @@ export default class Screens {
 
     this.exitButton.interactionarea();
     this.exitButton.exit();
+
+    image(
+      assets.visual.active.boat,
+      1700,
+      640,
+      this.width - 2400,
+      this.height - 1200
+    );
+
+    image(
+      assets.visual.default.boat,
+      700,
+      910,
+      this.width - 2400,
+      this.height - 1200
+    );
   } //Fabi
 
   gameScreen() {
