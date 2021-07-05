@@ -13,7 +13,12 @@ export default class Button {
 
   default() {
     //default
-    fill(5, 85, 83);
+    if (this.lable === "Start" || this.lable === "Replay") {
+      fill(5, 85, 83);
+    } else if (this.lable === "Home" || this.lable === "Back to Game") {
+      fill(247, 240, 226);
+    }
+
     stroke(this.color);
     strokeWeight(5);
     rect(this.x - 150, this.y, 300, 80, 20);
