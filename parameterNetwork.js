@@ -7,7 +7,7 @@ export default class ParameterNetwork {
     this.zeitraum = 80;
     this.schutzzonen = 20;
     this.hafenkontrollen = 50;
-    this.antiköder = 10;
+    this.antikoeder = 10;
 
     //Output in Prozenten
     this.nachhaltigeMethoden = 10;
