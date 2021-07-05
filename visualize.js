@@ -59,7 +59,7 @@ export default class Visualize {
 
   //Checkt ob ein farbcode gerade angesprochen wird, wenn ja: interactionKey gesetzt
   checkKey() {
-    let intKey = "";
+    let intKey;
     this.interactionDict.forEach((value, key) => {
       if (this.compareArrays(this.mousePositionColor, value) === true) {
         intKey = key;
@@ -68,17 +68,17 @@ export default class Visualize {
     this.interactionKey = intKey;
   }
 
-  doForKey(clicked) {
-    if (clicked.clicked === true && this.interactionKey === "startbutton") {
-      console.log("startClick");
-      clicked.clicked = false;
+  doForKey(helper) {
+    // erste if schleife alle click events, alles danach hover events
+    if (helper.clicked === true) {
+      if (this.interactionKey === "startbutton") {
+        console.log("startClick");
+      } else if (this.interactionKey === "tutorialbutton") {
+        console.log("tutorialClick");
+      }
+      helper.clicked = false;
     } else if (this.interactionKey === "startbutton") {
       console.log("startHover");
-    }
-
-    if (clicked.clicked === true && this.interactionKey === "tutorialbutton") {
-      console.log("tutorialClick");
-      clicked.clicked = false;
     } else if (this.interactionKey === "tutorialbutton") {
       console.log("tutorialHover");
     }
