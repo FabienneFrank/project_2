@@ -76,6 +76,22 @@ export default class Screens {
       color(30, 180, 160, 255),
       "exitsquare"
     );
+    this.homeButton = new Button(
+      this.width / 2 + 200,
+      this.height / 2,
+      color(251, 84, 82),
+      "Home",
+      color(180, 233, 186, 255),
+      "default"
+    );
+    this.backToGameButton = new Button(
+      this.width / 2 - 200,
+      this.height / 2,
+      color(145, 155, 154),
+      "Back to Game",
+      color(223, 177, 10, 255),
+      "default"
+    );
   }
 
   setup() {
@@ -306,7 +322,35 @@ export default class Screens {
     this.scrollUpButton.scroll();
   } // Jenny: Get Score
 
-  exitPopUp() {}
+  exitPopUp() {
+    noStroke();
+    fill(251, 84, 82);
+    rect(this.width / 2 - 450, this.height / 2 - 300, 900, 100, 20, 20, 0, 0);
+    fill(247, 240, 226);
+    rect(this.width / 2 - 450, this.height / 2 - 200, 900, 330, 0, 0, 20, 20);
+    textFont(myFontBold);
+    textSize(80);
+    fill(247, 240, 226);
+    textAlign(CENTER);
+    noStroke();
+    text("Score: " + "x", this.width / 2, this.height / 2 - 230);
+    textSize(35);
+    fill(5, 85, 83);
+    text(
+      "Du hast dein Ziel noch nicht ganz erreicht. Möchtest du das",
+      this.width / 2,
+      this.height / 2 - 130
+    );
+    text(
+      "Spiel wirklich verlassen? Dein Fortschritt wird nicht gespeichert.",
+      this.width / 2,
+      this.height / 2 - 80
+    );
+    this.homeButton.interactionarea();
+    this.homeButton.default();
+    this.backToGameButton.interactionarea();
+    this.backToGameButton.default();
+  }
 
   displayTipps() {
     textAlign(CENTER);
