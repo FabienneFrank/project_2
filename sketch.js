@@ -14,9 +14,11 @@ window.draw = draw;
 window.mouseClicked = mouseClicked;
 window.preload = preload;
 
-let screenState = "start"; // "start","tutorial","game","end"
 let resizeEndScreenCanvas = true;
-let clicked = { clicked: false };
+let helper = {
+  clicked: false,
+  screenState: "start", // "start","tutorial","game","end"
+};
 export let assets = {
   interactive: {
     boat: "",
@@ -131,13 +133,13 @@ screen.setup();
 
 function draw() {
   background(5, 85, 83);
-  if (screenState === "start") {
-    screen.startScreen(clicked);
-  } else if (screenState === "tutorial") {
+  if (helper.screenState === "start") {
+    screen.startScreen(helper);
+  } else if (helper.screenState === "tutorial") {
     screen.tutorial();
-  } else if (screenState === "game") {
+  } else if (helper.screenState === "game") {
     screen.gameScreen();
-  } else if (screenState === "end") {
+  } else if (helper.screenState === "end") {
     if (resizeEndScreenCanvas) {
       endscreenResize();
     }
@@ -149,7 +151,7 @@ function endscreenResize() {
   resizeEndScreenCanvas = false;
 }
 function mouseClicked() {
-  clicked.clicked = true;
+  helper.clicked = true;
   /*if (state === "start" && interactionarea.round === true) {
     state = "tutorial";
   }

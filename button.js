@@ -73,6 +73,5 @@ export default class Button {
       fill(this.interactioncolor);
       rect(this.x - 580, this.y - 445, 80, 65, 8);
     }
-    return this.interactioncolor;
   }
 }

@@ -82,7 +82,7 @@ export default class Screens {
     this.visualize.interactionDictonary();
   }
 
-  startScreen(clicked) {
+  startScreen(helper) {
     //Titel
     fill(251, 84, 82);
     noStroke();
@@ -142,7 +142,7 @@ export default class Screens {
     this.tutorialButton.help();
 
     this.visualize.checkKey();
-    this.visualize.doForKey(clicked);
+    this.visualize.doForKey(helper);
   } // Jenny
 
   tutorial() {
