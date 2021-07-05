@@ -77,7 +77,12 @@ export default class Screens {
       "exitsquare"
     );
   }
-  startScreen() {
+
+  setup() {
+    this.visualize.interactionDictonary();
+  }
+
+  startScreen(clicked) {
     //Titel
     fill(251, 84, 82);
     noStroke();
@@ -129,10 +134,15 @@ export default class Screens {
     text("Agenda 2030", this.width / 2 - 205, this.height / 2);
     //Start-Button
     this.startButton.interactionarea();
-    this.startButton.default();
-
     this.tutorialButton.interactionarea();
+
+    this.visualize.colorCheck();
+
+    this.startButton.default();
     this.tutorialButton.help();
+
+    this.visualize.checkKey();
+    this.visualize.doForKey(clicked);
   } // Jenny
 
   tutorial() {
