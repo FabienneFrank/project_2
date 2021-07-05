@@ -72,9 +72,14 @@ export default class Visualize {
     // erste if schleife alle click events, alles danach hover events
     if (helper.clicked === true) {
       if (this.interactionKey === "startbutton") {
+        helper.screenState = "game";
         console.log("startClick");
       } else if (this.interactionKey === "tutorialbutton") {
+        helper.screenState = "tutorial";
         console.log("tutorialClick");
+      } else if (this.interactionKey === "backbutton") {
+        helper.screenState = "start";
+        console.log("backClick");
       }
       helper.clicked = false;
     } else if (this.interactionKey === "startbutton") {
