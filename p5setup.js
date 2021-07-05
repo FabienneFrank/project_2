@@ -1,6 +1,6 @@
 function setup() {
   let scubaCanvas = createCanvas(windowWidth, windowHeight);
-  scubaCanvas.parent('scube');
+  scubaCanvas.parent("scube");
   frameRate(30);
 }
 

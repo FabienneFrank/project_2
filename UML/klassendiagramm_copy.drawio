@@ -1,6 +1,6 @@
 <mxfile>
     <diagram id="W6jYV2zwFdO2eOkkkQOU" name="Page-1">
-        <mxGraphModel dx="532" dy="1924" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1638" dy="2029" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -59,7 +59,7 @@
                 <mxCell id="25" value="+ render(): void&#10;+ changeColor(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="22" vertex="1">
                     <mxGeometry y="34" width="200" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="26" value="Geisternetze" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+                <mxCell id="26" value="Geisternetz" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
                     <mxGeometry x="460" y="600" width="200" height="94" as="geometry"/>
                 </mxCell>
                 <mxCell id="28" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="26" vertex="1">
@@ -164,7 +164,7 @@
                 <mxCell id="63" value="Screens(x,y,width,height)&#10;+ startScreen()&#10;+ gameScreen()&#10;+ endScreen()&#10;+ ExitPopUp()&#10;+ Tutorial()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="60" vertex="1">
                     <mxGeometry y="108" width="160" height="92" as="geometry"/>
                 </mxCell>
-                <mxCell id="65" value="keyAction" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+                <mxCell id="65" value="KeyAction" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
                     <mxGeometry x="490" y="318" width="160" height="140" as="geometry"/>
                 </mxCell>
                 <mxCell id="66" value="parameterobject" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="65" vertex="1">
@@ -179,16 +179,16 @@
                 <mxCell id="69" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1.019;entryY=0.107;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="7" target="65" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="71" value="Visualize" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+                <mxCell id="71" value="Visualize" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
                     <mxGeometry x="414" y="-40" width="160" height="250" as="geometry"/>
                 </mxCell>
-                <mxCell id="72" value="x&#10;y&#10;new Fisch(x,y)&#10;new keyAction(parameterObject)&#10;new ParameterNetwork()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="71">
+                <mxCell id="72" value="x&#10;y&#10;new Fisch(x,y)&#10;new keyAction(parameterObject)&#10;new ParameterNetwork()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="71" vertex="1">
                     <mxGeometry y="26" width="160" height="84" as="geometry"/>
                 </mxCell>
-                <mxCell id="73" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="71">
+                <mxCell id="73" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="71" vertex="1">
                     <mxGeometry y="110" width="160" height="8" as="geometry"/>
                 </mxCell>
-                <mxCell id="74" value="Visualization(x,y)&#10;+ displayAll()&#10;+ displayClickAreas()&#10;+ displayEntities()&#10;+ calculateEntities()&#10;&#10;+ checkKey(): keyCode&#10;+ doForKey(keyCode)&#10;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="71">
+                <mxCell id="74" value="Visualization(x,y)&#10;+ displayAll()&#10;+ displayClickAreas()&#10;+ displayEntities()&#10;+ calculateEntities()&#10;&#10;+ checkKey(): keyCode&#10;+ doForKey(keyCode)&#10;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="71" vertex="1">
                     <mxGeometry y="118" width="160" height="132" as="geometry"/>
                 </mxCell>
             </root>
