@@ -257,7 +257,6 @@ export default class Screens {
 
   gameScreen() {
     this.exitPopUp();
-    this.ParameterBox.background();
   }
 
   endScreen() {

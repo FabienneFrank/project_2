@@ -29,6 +29,14 @@ export let assets = {
       boat: "",
       haus: "",
       hafenkontrolle: "",
+      subventionen: "",
+      fangquote: "",
+      schutzzonen1: "",
+      schutzzonen2: "",
+      schutzzonen3: "",
+      schutzzonen4: "",
+      schutzzonen5: "",
+      antikoeder: "",
     },
     default: {
       boat: "",
@@ -54,6 +62,22 @@ export let assets = {
       koralle2Stage4: "",
       koralle2Stage5: "",
       hafenkontrolle: "",
+      zeitraum1h: "",
+      zeitraum2h: "",
+      zeitraum3h: "",
+      zeitraum4h: "",
+      zeitraum5h: "",
+      zeitraum6h: "",
+      zeitraum7h: "",
+      zeitraum8h: "",
+      zeitraum9h: "",
+      zeitraum10h: "",
+      zeitraum11h: "",
+      zeitraum12h: "",
+      subventionen: "",
+      fangquote: "",
+      schutzzonen0: "",
+      antikoeder: "",
     },
   },
 };
@@ -66,6 +90,16 @@ function preload() {
   assets.visual.active.hafenkontrolle = loadImage(
     "assets/hafenkontrollenClicked.png"
   );
+  assets.visual.active.subventionen = loadImage(
+    "assets/subventionenClicked.png"
+  );
+  assets.visual.active.fangquote = loadImage("assets/fangquoteClicked.png");
+  assets.visual.active.schutzzonen1 = loadImage("assets/schutzzonen1.png");
+  assets.visual.active.schutzzonen2 = loadImage("assets/schutzzonen2.png");
+  assets.visual.active.schutzzonen3 = loadImage("assets/schutzzonen3.png");
+  assets.visual.active.schutzzonen4 = loadImage("assets/schutzzonen4.png");
+  assets.visual.active.schutzzonen5 = loadImage("assets/schutzzonen5.png");
+  assets.visual.active.antikoeder = loadImage("assets/antikoederClicked.png");
 
   assets.visual.default.boat = loadImage("assets/origamiBootGrün.png");
   assets.visual.default.fish1 = loadImage("assets/origamiFisch1Grün.png");
@@ -122,6 +156,22 @@ function preload() {
   assets.visual.default.hafenkontrolle = loadImage(
     "assets/hafenkontrollenDefault.png"
   );
+  assets.visual.default.zeitraum1h = loadImage("assets/zeitraum1h.png");
+  assets.visual.default.zeitraum2h = loadImage("assets/zeitraum2h.png");
+  assets.visual.default.zeitraum3h = loadImage("assets/zeitraum3h.png");
+  assets.visual.default.zeitraum4h = loadImage("assets/zeitraum4h.png");
+  assets.visual.default.zeitraum5h = loadImage("assets/zeitraum5h.png");
+  assets.visual.default.zeitraum6h = loadImage("assets/zeitraum6h.png");
+  assets.visual.default.zeitraum7h = loadImage("assets/zeitraum7h.png");
+  assets.visual.default.zeitraum8h = loadImage("assets/zeitraum8h.png");
+  assets.visual.default.zeitraum9h = loadImage("assets/zeitraum9h.png");
+  assets.visual.default.zeitraum10h = loadImage("assets/zeitraum10h.png");
+  assets.visual.default.zeitraum11h = loadImage("assets/zeitraum11h.png");
+  assets.visual.default.zeitraum12h = loadImage("assets/zeitraum12h.png");
+  assets.visual.default.subventionen = loadImage("assets/subventionen.png");
+  assets.visual.default.fangquote = loadImage("assets/fangquote.png");
+  assets.visual.default.schutzzonen0 = loadImage("assets/schutzzonen0.png");
+  assets.visual.default.antikoeder = loadImage("assets/antikoeder.png");
 
   assets.interactive.boat = loadImage("assets/interaktionsBoot.png"); //(100,90,110,255) rgba des interaktions Bereichs
   assets.interactive.haus = loadImage("assets/interaktionsHaus.png"); //(100,80,120,255) rgba des interaktions Bereichs
