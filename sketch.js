@@ -14,8 +14,9 @@ window.draw = draw;
 window.mouseClicked = mouseClicked;
 window.preload = preload;
 
-let screenState = "tutorial"; // "start","tutorial","game","end"
+let screenState = "start"; // "start","tutorial","game","end"
 let resizeEndScreenCanvas = true;
+let clicked = { clicked: false };
 export let assets = {
   interactive: {
     boat: "",
@@ -123,11 +124,15 @@ function preload() {
   assets.interactive.boat = loadImage("assets/interaktionsBoot.png"); //(100,90,110,255) rgba des interaktions Bereichs
   assets.interactive.haus = loadImage("assets/interaktionsHaus.png"); //(100,80,120,255) rgba des interaktions Bereichs
 }
+
 let screen = new Screens(width, height);
+
+screen.setup();
+
 function draw() {
   background(5, 85, 83);
   if (screenState === "start") {
-    screen.startScreen();
+    screen.startScreen(clicked);
   } else if (screenState === "tutorial") {
     screen.tutorial();
   } else if (screenState === "game") {
@@ -144,6 +149,7 @@ function endscreenResize() {
   resizeEndScreenCanvas = false;
 }
 function mouseClicked() {
+  clicked.clicked = true;
   /*if (state === "start" && interactionarea.round === true) {
     state = "tutorial";
   }

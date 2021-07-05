@@ -26,6 +26,8 @@ export default class Visualize {
     this.plastikTeppich = new Plastik(0, 0, 100, 100);
     this.beifang;
     this.beifangArray = [];
+    this.hover = false;
+    this.click = false;
   }
 
   displayInteractionArea() {} //zeigt alle interactionAreas an
@@ -57,14 +59,30 @@ export default class Visualize {
 
   //Checkt ob ein farbcode gerade angesprochen wird, wenn ja: interactionKey gesetzt
   checkKey() {
+    let intKey = "";
     this.interactionDict.forEach((value, key) => {
       if (this.compareArrays(this.mousePositionColor, value) === true) {
-        this.interactionKey = key;
+        intKey = key;
       }
     });
+    this.interactionKey = intKey;
   }
 
-  doForKey(/*bekommt interactionKey*/) {} //bei welchem Farbcode soll welche Methode in keyAction ausgeführt werden
+  doForKey(clicked) {
+    if (clicked.clicked === true && this.interactionKey === "startbutton") {
+      console.log("startClick");
+      clicked.clicked = false;
+    } else if (this.interactionKey === "startbutton") {
+      console.log("startHover");
+    }
+
+    if (clicked.clicked === true && this.interactionKey === "tutorialbutton") {
+      console.log("tutorialClick");
+      clicked.clicked = false;
+    } else if (this.interactionKey === "tutorialbutton") {
+      console.log("tutorialHover");
+    }
+  } //bei welchem Farbcode soll welche Methode in keyAction ausgeführt werden
 
   calculateEntities() {
     this.fisch =
