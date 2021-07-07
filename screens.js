@@ -1,8 +1,7 @@
 import { assets } from "./sketch.js";
 import Visualize from "./visualize.js";
 import Button from "./button.js";
-import ParameterBox from "./parameterBox.js";
-let myFontDefault = loadFont("font/D-DINCondensed.otf");
+
 let myFontBold = loadFont("font/D-DINCondensed-Bold.otf");
 
 export default class Screens {
@@ -17,12 +16,7 @@ export default class Screens {
     ];
     //--------------------------
     this.visualize = new Visualize(this.width / 2, this.height / 2);
-    this.ParameterBox = new ParameterBox(
-      this.width / 2 + 200,
-      this.height / 2 - 350,
-      480,
-      680
-    );
+
     this.startButton = new Button(
       this.width / 2,
       (this.height * 2) / 3,
@@ -271,8 +265,10 @@ export default class Screens {
     );
   } //Fabi
 
-  gameScreen() {
-    this.exitPopUp();
+  gameScreen(helper) {
+    //this.exitPopUp();
+    //this.visualize.calculateEntities(helper);
+    //this.visualize.displayVisuals(helper);
   }
 
   endScreen() {
@@ -323,17 +319,20 @@ export default class Screens {
   } // Jenny: Get Score
 
   exitPopUp() {
+    //background
     noStroke();
     fill(251, 84, 82);
     rect(this.width / 2 - 450, this.height / 2 - 300, 900, 100, 20, 20, 0, 0);
     fill(247, 240, 226);
     rect(this.width / 2 - 450, this.height / 2 - 200, 900, 330, 0, 0, 20, 20);
+    //score-Anzeige
     textFont(myFontBold);
     textSize(80);
     fill(247, 240, 226);
     textAlign(CENTER);
     noStroke();
     text("Score: " + "x", this.width / 2, this.height / 2 - 230);
+    //text
     textSize(35);
     fill(5, 85, 83);
     text(
@@ -346,8 +345,10 @@ export default class Screens {
       this.width / 2,
       this.height / 2 - 80
     );
+    //home-Button
     this.homeButton.interactionarea();
     this.homeButton.default();
+    //back-to-Game-Button
     this.backToGameButton.interactionarea();
     this.backToGameButton.default();
   }

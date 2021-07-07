@@ -1,20 +1,20 @@
 export default class ParameterNetwork {
   constructor() {
     //Input in Prozenten
-    this.subventionen = 20;
-    this.sucheNetze = 30;
-    this.fangquote = 80;
-    this.zeitraum = 80;
-    this.schutzzonen = 20;
-    this.hafenkontrollen = 50;
-    this.antikoeder = 10;
+    this.subsidies = 20;
+    this.nets = 30;
+    this.fishingQuote = 80;
+    this.period = 80;
+    this.protectionZone = 20;
+    this.portControl = 50;
+    this.antiBait = 10;
 
     //Output in Prozenten
-    this.nachhaltigeMethoden = 10;
-    this.schleppnetzfischerei = 80;
-    this.geisternetze = 80;
-    this.plastik = 80;
-    this.beifang = 80;
+    this.sustainableMethods = 10;
+    this.trawling = 80;
+    this.ghostNets = 80;
+    this.plastic = 80;
+    this.bycatch = 80;
     this.co2 = 80;
   }
 
