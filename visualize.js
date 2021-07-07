@@ -1,4 +1,4 @@
-import { Fisch, Koralle, Plastik, Beifang } from "./entities.js";
+import { Fish, Coral, Plastic, Bycatch } from "./entities.js";
 import KeyAction from "./keyAction.js";
 // Samu Farbcode Dictionary
 
@@ -7,25 +7,25 @@ export default class Visualize {
     this.x = x;
     this.y = y;
     //--------------------------
-    this.keyAction = new KeyAction();
+    this.keyAction = new KeyAction(this.x, this.y, this);
     this.interactionDict = new Map();
     //--------------------------
     this.mousePositionColor = [];
     this.interactionKey = "";
     this.parameter = this.keyAction.parameterNetwork;
-    this.fisch;
-    this.fischArray = [];
-    this.koralle;
-    this.koralleArray = [];
+    this.fish;
+    this.fishArray = [];
+    this.coral;
+    this.coralArray = [];
     for (let i = 0; i < 20; i++) {
-      this.koralleArray.push(new Koralle(0, 0, 100, 100)); //x,y,width,height muss noch angepasst werden
+      this.coralArray.push(new Coral(0, 0, 100, 100)); //x,y,width,height muss noch angepasst werden
     }
-    this.geisternetz;
-    this.geisternetzArray = [];
-    this.plastik;
-    this.plastikTeppich = new Plastik(0, 0, 100, 100);
-    this.beifang;
-    this.beifangArray = [];
+    this.ghostNets;
+    this.ghostNetsArray = [];
+    this.plastic;
+    this.plasticTeppich = new Plastic(0, 0, 100, 100);
+    this.bycatch;
+    this.bycatchArray = [];
     this.hover = false;
     this.click = false;
   }
@@ -49,6 +49,26 @@ export default class Visualize {
     this.interactionDict.set("backbutton", [30, 180, 160, 255]);
     this.interactionDict.set("homebutton", [180, 233, 186, 255]);
     this.interactionDict.set("backtogamebutton", [223, 177, 10, 255]);
+    this.interactionDict.set("chooseParameterFishingQuote", [223, 99, 93, 255]);
+    this.interactionDict.set("chooseParameterSubsidies", [41, 55, 1, 255]);
+    this.interactionDict.set("chooseParameterPortControl", [24, 95, 235, 255]);
+    this.interactionDict.set("chooseParameterPeriod", [191, 117, 96, 255]);
+    this.interactionDict.set("chooseParameterNets", [161, 71, 143, 255]);
+    this.interactionDict.set("chooseParameterAntiBait", [114, 59, 65, 255]);
+    this.interactionDict.set("chooseParameterProtectionZone", [
+      158,
+      148,
+      210,
+      255,
+    ]);
+    this.interactionDict.set("changeFangquote", [207, 203, 219, 255]);
+    this.interactionDict.set("changePortControl", [164, 158, 163, 255]);
+    this.interactionDict.set("changeSubsidies", [57, 19, 242, 255]);
+    this.interactionDict.set("changeAntiBait", [112, 101, 33, 255]);
+    this.interactionDict.set("changeNets", [22, 88, 111, 255]);
+    this.interactionDict.set("changeProtectionZone", [68, 57, 10, 255]);
+    this.interactionDict.set("periodUpButton", [175, 22, 181, 255]);
+    this.interactionDict.set("periodDownButton", [18, 44, 22, 255]);
   }
 
   //vergleicht zwei Arrays
@@ -77,6 +97,44 @@ export default class Visualize {
         console.log("startClick");
       } else if (this.interactionKey === "tutorialbutton") {
         console.log("tutorialClick");
+      } else if (this.interactionKey === "chooseParameterFishingQuote") {
+        this.keyAction.shownParameterScreen = "fishingQuote";
+      } else if (this.interactionKey === "chooseParameterSubsidies") {
+        this.keyAction.shownParameterScreen = "subsidies";
+      } else if (this.interactionKey === "chooseParameterPortControl") {
+        this.keyAction.shownParameterScreen = "portControl";
+      } else if (this.interactionKey === "chooseParameterPeriod") {
+        this.keyAction.shownParameterScreen = "period";
+      } else if (this.interactionKey === "chooseParameterNets") {
+        this.keyAction.shownParameterScreen = "nets";
+      } else if (this.interactionKey === "chooseParameterAntiBait") {
+        this.keyAction.shownParameterScreen = "antiBait";
+      } else if (this.interactionKey === "chooseParameterProtectionZone") {
+        this.keyAction.shownParameterScreen = "protectionZone";
+      } else if (this.interactionKey === "changeFangquote") {
+        this.keyAction.parameterBox.clickedFishingQuote = this.keyAction.parameterBox.chosenIndex;
+      } else if (this.interactionKey === "changePortControl") {
+        this.keyAction.parameterBox.clickedPortControl = this.keyAction.parameterBox.chosenIndex;
+      } else if (this.interactionKey === "changeSubsidies") {
+        this.keyAction.parameterBox.clickedSubsidies = this.keyAction.parameterBox.chosenIndex;
+      } else if (this.interactionKey === "changeAntiBait") {
+        this.keyAction.parameterBox.clickedAntiBait = this.keyAction.parameterBox.chosenIndex;
+      } else if (this.interactionKey === "changeNets") {
+        this.keyAction.parameterBox.clickedNets = this.keyAction.parameterBox.chosenIndex;
+      } else if (this.interactionKey === "changeProtectionZone") {
+        this.keyAction.parameterBox.clickedProtectionZone = this.keyAction.parameterBox.chosenIndex;
+      } else if (this.interactionKey === "periodUpButton") {
+        if (this.keyAction.parameterBox.clickedPeriod < 11) {
+          this.keyAction.parameterBox.clickedPeriod += 1;
+        } else {
+          this.keyAction.parameterBox.clickedPeriod = 11;
+        }
+      } else if (this.interactionKey === "periodDownButton") {
+        if (this.keyAction.parameterBox.clickedPeriod > 0) {
+          this.keyAction.parameterBox.clickedPeriod -= 1;
+        } else {
+          this.keyAction.parameterBox.clickedPeriod = 0;
+        }
       }
       helper.clicked = false;
     } else if (this.interactionKey === "startbutton") {
@@ -87,77 +145,81 @@ export default class Visualize {
   } //bei welchem Farbcode soll welche Methode in keyAction ausgeführt werden
 
   calculateEntities() {
-    this.fisch =
-      this.parameter.plastik * 0.4 +
-      this.parameter.beifang * 0.4 +
+    this.fish =
+      this.parameter.plastic * 0.4 +
+      this.parameter.bycatch * 0.4 +
       this.parameter.co2 * 0.2;
-    this.koralle =
-      this.parameter.co2 * 0.5 + this.parameter.schleppnetzfischerei * 0.5;
-    this.plastik =
-      this.parameter.plastik * 0.5 + this.parameter.geisternetze * 0.5;
-    this.beifang = this.parameter.beifang;
-    //fisch
-    let fischNumEntities = 20;
+    this.coral = this.parameter.co2 * 0.5 + this.parameter.trawling * 0.5;
+    this.plastic =
+      this.parameter.plastic * 0.5 + this.parameter.ghostNets * 0.5;
+    this.bycatch = this.parameter.bycatch;
+    //fish
+    let fishNumEntities = 20;
 
     for (let j = 0; j <= 100; j += 10) {
-      if (this.fisch === 0 || (this.fisch > j && this.fisch <= j + 10)) {
-        for (let i = this.fischArray.length; i < fischNumEntities; i++) {
-          this.fischArray.push(new Fisch(0, 0, 100, 100)); //x,y,width,height muss noch angepasst werden
+      if (this.fish === 0 || (this.fish > j && this.fish <= j + 10)) {
+        for (let i = this.fishArray.length; i < fishNumEntities; i++) {
+          this.fishArray.push(new Fish(0, 0, 100, 100)); //x,y,width,height muss noch angepasst werden
         }
-      } else if (this.fisch === 100) {
-        this.fischArray = [];
+      } else if (this.fish === 100) {
+        this.fishArray = [];
       }
-      fischNumEntities -= 2;
+      fishNumEntities -= 2;
     }
-    fischNumEntities = 20;
+    fishNumEntities = 20;
 
-    //koralle
+    //coral
 
     for (let j = 0; j <= 100; j += 20) {
-      if (this.koralle === 0 || j < 20) {
-        for (let i = 0; i < this.koralleArray.length; i++) {
-          this.koralleArray[i].changeColor(1);
+      if (this.coral === 0 || j < 20) {
+        for (let i = 0; i < this.coralArray.length; i++) {
+          this.coralArray[i].changeColor(1);
         }
-      } else if (this.koralle > j && this.koralle <= j + 20) {
-        for (let i = 0; i < this.koralleArray.length; i++) {
-          this.koralleArray[i].changeColor(j / 4 / 5 + 1);
+      } else if (this.coral > j && this.coral <= j + 20) {
+        for (let i = 0; i < this.coralArray.length; i++) {
+          this.coralArray[i].changeColor(j / 4 / 5 + 1);
         }
-      } else if (this.koralle === 100) {
-        for (let i = 0; i < this.koralleArray.length; i++) {
-          this.koralleArray[i].changeColor(5);
+      } else if (this.coral === 100) {
+        for (let i = 0; i < this.coralArray.length; i++) {
+          this.coralArray[i].changeColor(5);
         }
       }
     }
-    //plastik
+    //plastic
     for (let j = 0; j <= 100; j += 20) {
-      if (this.plastik === 0) {
+      if (this.plastic === 0) {
         //display no array
-      } else if (this.plastik > 0 && this.plastik <= 20) {
-        this.plastikTeppich.changeState(1);
-      } else if (this.plastik > 20 && this.plastik <= 40) {
-        this.plastikTeppich.changeState(2);
-      } else if (this.plastik > 40 && this.plastik <= 60) {
-        this.plastikTeppich.changeState(3);
-      } else if (this.plastik > 60 && this.plastik <= 80) {
-        this.plastikTeppich.changeState(4);
-      } else if (this.plastik > 80 && this.plastik <= 100) {
-        this.plastikTeppich.changeState(5);
+      } else if (this.plastic > 0 && this.plastic <= 20) {
+        this.plasticTeppich.changeState(1);
+      } else if (this.plastic > 20 && this.plastic <= 40) {
+        this.plasticTeppich.changeState(2);
+      } else if (this.plastic > 40 && this.plastic <= 60) {
+        this.plasticTeppich.changeState(3);
+      } else if (this.plastic > 60 && this.plastic <= 80) {
+        this.plasticTeppich.changeState(4);
+      } else if (this.plastic > 80 && this.plastic <= 100) {
+        this.plasticTeppich.changeState(5);
       }
     }
-    //beifang
-    let beifangNumEntities = 20;
+    //bycatch
+    let bycatchNumEntities = 20;
     for (let j = 0; j <= 100; j += 10) {
-      if (this.beifang === 0 || (this.beifang > j && this.beifang <= j + 10)) {
-        for (let i = this.beifangArray.length; i < beifangNumEntities; i++) {
-          this.beifangArray.push(new Beifang(0, 0, 100, 100)); //x,y,width,height muss noch angepasst werden
+      if (this.bycatch === 0 || (this.bycatch > j && this.bycatch <= j + 10)) {
+        for (let i = this.bycatchArray.length; i < bycatchNumEntities; i++) {
+          this.bycatchArray.push(new Bycatch(0, 0, 100, 100)); //x,y,width,height muss noch angepasst werden
         }
-      } else if (this.beifang === 100) {
-        this.beifangArray = [];
+      } else if (this.bycatch === 100) {
+        this.bycatchArray = [];
       }
-      beifangNumEntities -= 2;
+      bycatchNumEntities -= 2;
     }
-    beifangNumEntities = 20;
+    bycatchNumEntities = 20;
   } //Jenny: output prozente aus parameterNetwork abfragen und in anzahl an entities umwandeln, (bsp: 80% plastik = 1 Fisch, 60% plastik = 3 fische), anzahl entities in array speichern (3 Fische -> array[fisch1=new Fisch,fisch2=new Fisch,fisch3=new Fisch])
 
-  displayVisuals() {} //zeigt die Oberfläche der Simulation an
+  displayVisuals(helper) {
+    //this.keyAction.boat(helper);
+    //this.keyAction.nets(helper);
+    //this.keyAction.port(helper);
+    //this.keyAction.waterSurface(helper);
+  } //zeigt die Oberfläche der Simulation an
 }

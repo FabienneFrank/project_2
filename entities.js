@@ -8,7 +8,7 @@ export class Entities {
   }
 }
 
-export class Fisch extends Entities {
+export class Fish extends Entities {
   constructor(x, y, width, height) {
     super(x, y, width, height);
   }
@@ -19,35 +19,35 @@ export class Fisch extends Entities {
   move() {} //schwimmbewegungen der Fische von vorne nach hinten und umdrehen
 }
 
-export class Koralle extends Entities {
+export class Coral extends Entities {
   constructor(x, y, width, height) {
     super(x, y, width, height);
-    this.Koralle1colorStages = [
-      assets.visual.default.koralleStage1,
-      assets.visual.default.koralleStage2,
-      assets.visual.default.koralleStage3,
-      assets.visual.default.koralleStage4,
-      assets.visual.default.koralleStage5,
+    this.coral1colorStages = [
+      assets.visual.default.coralStage1,
+      assets.visual.default.coralStage2,
+      assets.visual.default.coralStage3,
+      assets.visual.default.coralStage4,
+      assets.visual.default.coralStage5,
     ];
-    this.Koralle2colorStages = [
-      assets.visual.default.koralle2Stage1,
-      assets.visual.default.koralle2Stage2,
-      assets.visual.default.koralle2Stage3,
-      assets.visual.default.koralle2Stage4,
-      assets.visual.default.koralle2Stage5,
+    this.coral2colorStages = [
+      assets.visual.default.coral2Stage1,
+      assets.visual.default.coral2Stage2,
+      assets.visual.default.coral2Stage3,
+      assets.visual.default.coral2Stage4,
+      assets.visual.default.coral2Stage5,
     ];
     this.stage = 0;
   }
   render() {
     image(
-      this.Koralle1colorStages[this.stage],
+      this.coral1colorStages[this.stage],
       this.x,
       this.y,
       this.width,
       this.height
     );
     image(
-      this.Koralle2colorStages[this.stage],
+      this.coral2colorStages[this.stage],
       this.x,
       this.y,
       this.width,
@@ -59,10 +59,10 @@ export class Koralle extends Entities {
   } //wenn der CO2 Gehalt steigt sollen die Farben der Koralle abgeschwächt werden (Illustrator verschiedene Farbversionen?)
 }
 
-export class Plastik extends Entities {
+export class Plastic extends Entities {
   constructor(x, y, width, height) {
     super(x, y, width, height);
-    this.plastikStages = [
+    this.plasticStages = [
       assets.visual.default.plasticStage1,
       assets.visual.default.plasticStage2,
       assets.visual.default.plasticStage3,
@@ -72,7 +72,7 @@ export class Plastik extends Entities {
   }
   render() {
     image(
-      this.plastikStages[this.stage],
+      this.plasticStages[this.stage],
       this.x,
       this.y,
       this.width,
@@ -85,20 +85,20 @@ export class Plastik extends Entities {
   float() {} //floaten auf der Wasseroberfläche oder im Wasser?
 }
 
-export class Beifang extends Entities {
+export class Bycatch extends Entities {
   constructor(x, y, width, height) {
     super(x, y, width, height);
   }
   render() {
     image(
-      assets.visual.default.beifang1,
+      assets.visual.default.bycatch1,
       this.x,
       this.y,
       this.width,
       this.height
     );
     image(
-      assets.visual.default.beifang2,
+      assets.visual.default.bycatch2,
       this.x,
       this.y,
       this.width,
