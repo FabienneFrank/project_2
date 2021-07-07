@@ -112,6 +112,7 @@ export default class Visualize {
       } else if (this.interactionKey === "chooseParameterProtectionZone") {
         this.keyAction.shownParameterScreen = "protectionZone";
       } else if (this.interactionKey === "changeFangquote") {
+
         if (
           this.keyAction.parameterBox.clickedFishingQuote ===
             this.keyAction.parameterBox.chosenIndex &&
@@ -171,6 +172,7 @@ export default class Visualize {
         } else {
           this.keyAction.parameterBox.clickedProtectionZone = this.keyAction.parameterBox.chosenIndex;
         }
+
       } else if (this.interactionKey === "periodUpButton") {
         if (this.keyAction.parameterBox.clickedPeriod < 11) {
           this.keyAction.parameterBox.clickedPeriod += 1;
