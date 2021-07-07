@@ -112,17 +112,65 @@ export default class Visualize {
       } else if (this.interactionKey === "chooseParameterProtectionZone") {
         this.keyAction.shownParameterScreen = "protectionZone";
       } else if (this.interactionKey === "changeFangquote") {
-        this.keyAction.parameterBox.clickedFishingQuote = this.keyAction.parameterBox.chosenIndex;
+        if (
+          this.keyAction.parameterBox.clickedFishingQuote ===
+            this.keyAction.parameterBox.chosenIndex &&
+          this.keyAction.parameterBox.clickedFishingQuote > 0
+        ) {
+          this.keyAction.parameterBox.clickedFishingQuote -= 1;
+        } else {
+          this.keyAction.parameterBox.clickedFishingQuote = this.keyAction.parameterBox.chosenIndex;
+        }
       } else if (this.interactionKey === "changePortControl") {
-        this.keyAction.parameterBox.clickedPortControl = this.keyAction.parameterBox.chosenIndex;
+        if (
+          this.keyAction.parameterBox.clickedPortControl ===
+            this.keyAction.parameterBox.chosenIndex &&
+          this.keyAction.parameterBox.clickedPortControl > 0
+        ) {
+          this.keyAction.parameterBox.clickedPortControl -= 1;
+        } else {
+          this.keyAction.parameterBox.clickedPortControl = this.keyAction.parameterBox.chosenIndex;
+        }
       } else if (this.interactionKey === "changeSubsidies") {
-        this.keyAction.parameterBox.clickedSubsidies = this.keyAction.parameterBox.chosenIndex;
+        if (
+          this.keyAction.parameterBox.clickedSubsidies ===
+            this.keyAction.parameterBox.chosenIndex &&
+          this.keyAction.parameterBox.clickedSubsidies > 0
+        ) {
+          this.keyAction.parameterBox.clickedSubsidies -= 1;
+        } else {
+          this.keyAction.parameterBox.clickedSubsidies = this.keyAction.parameterBox.chosenIndex;
+        }
       } else if (this.interactionKey === "changeAntiBait") {
-        this.keyAction.parameterBox.clickedAntiBait = this.keyAction.parameterBox.chosenIndex;
+        if (
+          this.keyAction.parameterBox.clickedAntiBait ===
+            this.keyAction.parameterBox.chosenIndex &&
+          this.keyAction.parameterBox.clickedAntiBait > 0
+        ) {
+          this.keyAction.parameterBox.clickedAntiBait -= 1;
+        } else {
+          this.keyAction.parameterBox.clickedAntiBait = this.keyAction.parameterBox.chosenIndex;
+        }
       } else if (this.interactionKey === "changeNets") {
-        this.keyAction.parameterBox.clickedNets = this.keyAction.parameterBox.chosenIndex;
+        if (
+          this.keyAction.parameterBox.clickedNets ===
+            this.keyAction.parameterBox.chosenIndex &&
+          this.keyAction.parameterBox.clickedNets > 0
+        ) {
+          this.keyAction.parameterBox.clickedNets -= 1;
+        } else {
+          this.keyAction.parameterBox.clickedNets = this.keyAction.parameterBox.chosenIndex;
+        }
       } else if (this.interactionKey === "changeProtectionZone") {
-        this.keyAction.parameterBox.clickedProtectionZone = this.keyAction.parameterBox.chosenIndex;
+        if (
+          this.keyAction.parameterBox.clickedProtectionZone ===
+            this.keyAction.parameterBox.chosenIndex &&
+          this.keyAction.parameterBox.clickedProtectionZone > 0
+        ) {
+          this.keyAction.parameterBox.clickedProtectionZone -= 1;
+        } else {
+          this.keyAction.parameterBox.clickedProtectionZone = this.keyAction.parameterBox.chosenIndex;
+        }
       } else if (this.interactionKey === "periodUpButton") {
         if (this.keyAction.parameterBox.clickedPeriod < 11) {
           this.keyAction.parameterBox.clickedPeriod += 1;
