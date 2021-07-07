@@ -26,13 +26,13 @@ export default class ParameterBox {
       "round"
     );
     this.chosenIndex = 0;
-    this.clickedPortControl = 0;
-    this.clickedFishingQuote = 0;
-    this.clickedSubsidies = 0;
-    this.clickedAntiBait = 0;
-    this.clickedNets = 0;
-    this.clickedPeriod = 0;
-    this.clickedProtectionZone = 0;
+    this.clickedPortControl = 5;
+    this.clickedFishingQuote = 8;
+    this.clickedSubsidies = 2;
+    this.clickedAntiBait = 1;
+    this.clickedNets = 3;
+    this.clickedPeriod = 8;
+    this.clickedProtectionZone = 2;
   }
   background(clickedObject, shownScreen, helper) {
     //background
@@ -261,7 +261,7 @@ export default class ParameterBox {
     //main image
 
     image(
-      periodArray[this.clickedPeriod],
+      periodArray[this.clickedPeriod - 1],
       this.x + this.width / 2 - 160,
       this.y + 370,
       314,

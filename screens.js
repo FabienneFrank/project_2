@@ -268,7 +268,7 @@ export default class Screens {
   gameScreen(helper) {
     //this.exitPopUp();
     //this.visualize.calculateEntities(helper);
-    //this.visualize.displayVisuals(helper);
+    this.visualize.displayVisuals(helper);
   }
 
   endScreen() {
