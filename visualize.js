@@ -112,7 +112,6 @@ export default class Visualize {
       } else if (this.interactionKey === "chooseParameterProtectionZone") {
         this.keyAction.shownParameterScreen = "protectionZone";
       } else if (this.interactionKey === "changeFangquote") {
-
         if (
           this.keyAction.parameterBox.clickedFishingQuote ===
             this.keyAction.parameterBox.chosenIndex &&
@@ -172,18 +171,17 @@ export default class Visualize {
         } else {
           this.keyAction.parameterBox.clickedProtectionZone = this.keyAction.parameterBox.chosenIndex;
         }
-
       } else if (this.interactionKey === "periodUpButton") {
-        if (this.keyAction.parameterBox.clickedPeriod < 11) {
+        if (this.keyAction.parameterBox.clickedPeriod < 12) {
           this.keyAction.parameterBox.clickedPeriod += 1;
         } else {
-          this.keyAction.parameterBox.clickedPeriod = 11;
+          this.keyAction.parameterBox.clickedPeriod = 12;
         }
       } else if (this.interactionKey === "periodDownButton") {
-        if (this.keyAction.parameterBox.clickedPeriod > 0) {
+        if (this.keyAction.parameterBox.clickedPeriod > 2) {
           this.keyAction.parameterBox.clickedPeriod -= 1;
         } else {
-          this.keyAction.parameterBox.clickedPeriod = 0;
+          this.keyAction.parameterBox.clickedPeriod = 1;
         }
       }
       helper.clicked = false;
@@ -270,6 +268,6 @@ export default class Visualize {
     //this.keyAction.boat(helper);
     //this.keyAction.nets(helper);
     //this.keyAction.port(helper);
-    //this.keyAction.waterSurface(helper);
+    this.keyAction.waterSurface(helper);
   } //zeigt die Oberfläche der Simulation an
 }
