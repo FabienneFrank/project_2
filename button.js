@@ -1,4 +1,3 @@
-//ich bin ein Test
 let myFontDefault = loadFont("font/D-DINCondensed.otf");
 let myFontBold = loadFont("font/D-DINCondensed-Bold.otf");
 export default class Button {
@@ -52,15 +51,20 @@ export default class Button {
   } //start screen to tutorial
 
   scroll() {
-    fill(5, 85, 83);
+    if (this.lable === "ScrollDown" || this.lable === "ScrollUp") {
+      fill(5, 85, 83);
+    } else if (this.lable === "periodUp" || this.lable === "periodDown") {
+      fill(247, 240, 226);
+    }
+
     strokeWeight(5);
     stroke(this.color);
     ellipse(this.x, this.y + 180, 50);
-    if (this.lable === "ScrollDown") {
+    if (this.lable === "ScrollDown" || this.lable === "periodDown") {
       line(this.x - 10, this.y + 175, this.x, this.y + 185);
       line(this.x + 10, this.y + 175, this.x, this.y + 185);
     }
-    if (this.lable === "ScrollUp") {
+    if (this.lable === "ScrollUp" || this.lable === "periodUp") {
       line(this.x - 10, this.y + 185, this.x, this.y + 175);
       line(this.x + 10, this.y + 185, this.x, this.y + 175);
     }
