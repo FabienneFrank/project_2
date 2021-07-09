@@ -364,8 +364,8 @@ export default class Visualize {
       this.parameter.plastic * 0.4 +
       this.parameter.bycatch * 0.4 +
       this.parameter.co2 * 0.2;
-    this.coral = 82; //I am big Confusion
-    this.plastic = this.parameter.plastic * 0.5; //I am also big Confusion
+    this.coral = this.parameter.co2; //I am big Confusion
+    this.plastic = this.parameter.plastic; //I am also big Confusion
     console.log("coral: " + this.coral);
     console.log("co2: " + this.parameter.co2);
     this.bycatch = this.parameter.bycatch;
@@ -400,7 +400,7 @@ export default class Visualize {
         }
       } else if (this.coral > j && this.coral <= j + 20) {
         for (let i = 0; i < this.coralArray.length; i++) {
-          this.coralArray[i].changeColor(j / 4 / 5 + 1);
+          this.coralArray[i].changeColor(j / 4 / 5);
         }
       } else if (this.coral === 100) {
         for (let i = 0; i < this.coralArray.length; i++) {
@@ -414,15 +414,15 @@ export default class Visualize {
       if (this.plastic === 0) {
         //display no array
       } else if (this.plastic > 0 && this.plastic <= 20) {
-        this.plasticTeppich.changeState(1);
+        this.plasticTeppich.changeState(0);
       } else if (this.plastic > 20 && this.plastic <= 40) {
-        this.plasticTeppich.changeState(2);
+        this.plasticTeppich.changeState(1);
       } else if (this.plastic > 40 && this.plastic <= 60) {
-        this.plasticTeppich.changeState(3);
+        this.plasticTeppich.changeState(2);
       } else if (this.plastic > 60 && this.plastic <= 80) {
-        this.plasticTeppich.changeState(4);
+        this.plasticTeppich.changeState(3);
       } else if (this.plastic > 80 && this.plastic <= 100) {
-        this.plasticTeppich.changeState(5);
+        this.plasticTeppich.changeState(4);
       }
     }
     //bycatch
