@@ -609,6 +609,7 @@ export default class ParameterBox {
   }
   interactionarea(clickedObject) {
     noStroke();
+
     if (clickedObject === "boat") {
       fill(223, 99, 93, 255);
       rect(this.x + this.width / 2 - 200, this.y + 220, 400, 200, 20);
