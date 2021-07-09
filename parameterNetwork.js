@@ -1,6 +1,7 @@
 export default class ParameterNetwork {
   constructor() {
     //Input in Prozenten
+
     this.subsidies = 20;
     this.nets = 20;
     this.fishingQuote = 80;
@@ -16,6 +17,7 @@ export default class ParameterNetwork {
 
     this.bycatch = 80;
 
+
     this.plastic = 80;
     this.co2 = 80;
 
@@ -27,8 +29,10 @@ export default class ParameterNetwork {
     this.sustainableMethods += this.subsidies / this.divideFactor;
     this.sustainableMethods -= this.ghostNets / this.divideFactor;
 
+
     this.ghostNets -= this.nets / this.divideFactor;
     this.ghostNets += this.trawling / this.divideFactor;
+
 
     this.trawling += this.fishingQuote / this.divideFactor;
     this.trawling += this.period / this.divideFactor;
@@ -41,6 +45,7 @@ export default class ParameterNetwork {
 
     this.plastic = this.ghostNets;
     this.co2 = this.trawling;
+
     if (this.sustainableMethods <= 0) {
       this.sustainableMethods = 0;
     } else if (this.sustainableMethods >= 100) {
@@ -71,6 +76,7 @@ export default class ParameterNetwork {
     } else if (this.co2 >= 100) {
       this.co2 = 100;
     }
+
   } //Samu: welche input parameter wirken sich auf welche output parameter aus, was sink und was steigt wenn was geändert wird
 
   testDisplay() {
