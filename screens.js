@@ -266,9 +266,11 @@ export default class Screens {
   } //Fabi
 
   gameScreen(helper) {
-    //this.exitPopUp();
-    //this.visualize.calculateEntities(helper);
+    this.visualize.displayInteractionArea();
+    this.visualize.colorCheck();
     this.visualize.displayVisuals(helper);
+    this.visualize.checkKey();
+    this.visualize.doForKey(helper);
   }
 
   endScreen() {

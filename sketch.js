@@ -1,4 +1,5 @@
 import Screens from "./screens.js";
+//import gsap from "./gsap.min.js";
 /* 
 default: rgb(5, 85, 83)
 weniger default: rgb(83, 124, 123)
@@ -23,6 +24,7 @@ export let assets = {
   interactive: {
     boat: "",
     house: "",
+    netMain: "",
     fish: "",
     portControl: "",
     subsidies: "",
@@ -46,6 +48,9 @@ export let assets = {
       nets: "",
     },
     default: {
+      cubeLayer1: "",
+      cubeLayer2: "",
+      cubeLayer3: "",
       boat: "",
       fish1: "",
       fish2: "",
@@ -108,6 +113,9 @@ function preload() {
   assets.visual.active.antiBait = loadImage("assets/antikoederClicked.png");
   assets.visual.active.nets = loadImage("assets/netzClicked.png");
 
+  assets.visual.default.cubeLayer1 = loadImage("assets/cubeLayer1.png");
+  assets.visual.default.cubeLayer2 = loadImage("assets/cubeLayer2.png");
+  assets.visual.default.cubeLayer3 = loadImage("assets/cubeLayer3.png");
   assets.visual.default.boat = loadImage("assets/origamiBootGrün.png");
   assets.visual.default.fish1 = loadImage("assets/origamiFisch1Grün.png");
   assets.visual.default.fish2 = loadImage("assets/origamiFisch2Grün.png");
@@ -183,6 +191,7 @@ function preload() {
 
   assets.interactive.boat = loadImage("assets/interaktionsBoot.png"); //(100,90,110,255) rgba des interaktions Bereichs
   assets.interactive.house = loadImage("assets/interaktionsHaus.png"); //(100,80,120,255) rgba des interaktions Bereichs
+  assets.interactive.netMain = loadImage("assets/netzMainInteraction.png"); //(189,109,171,255)
   assets.interactive.fish = loadImage("assets/fischInteraction.png"); //(207,203,219,255)
   assets.interactive.portControl = loadImage(
     "assets/hafenkontrollenInteraction.png"
@@ -196,6 +205,12 @@ function preload() {
     "assets/schutzzonenInteraction.png"
   ); //(68, 57, 10, 255)
 }
+
+export let cube = {
+  x: width / 2,
+  y: height / 2,
+  size: 1,
+};
 
 let screen = new Screens(width, height);
 
