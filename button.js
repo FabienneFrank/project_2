@@ -31,12 +31,17 @@ export default class Button {
   exit() {
     stroke(this.color);
     strokeWeight(4);
-    fill(251, 84, 82);
-    rect(this.x - 580, this.y - 445, 80, 65, 8);
+    if (this.lable === "tutorial") {
+      fill(251, 84, 82);
+    } else if (this.lable === "game") {
+      fill(5, 85, 83);
+    }
+
+    rect(this.x, this.y, 80, 80, 8);
     strokeWeight(6);
-    line(this.x - 560, this.y - 410, this.x - 520, this.y - 410); //line middle
-    line(this.x - 560, this.y - 410, this.x - 540, this.y - 427); //line top
-    line(this.x - 560, this.y - 410, this.x - 540, this.y - 393); //line bottom
+    line(this.x + 20, this.y + 40, this.x + 60, this.y + 40); //line middle
+    line(this.x + 20, this.y + 40, this.x + 40, this.y + 60); //line top
+    line(this.x + 20, this.y + 40, this.x + 40, this.y + 20); //line bottom
   } //exit arrow
 
   help() {
@@ -78,9 +83,8 @@ export default class Button {
       fill(this.interactioncolor);
       ellipse(this.x, this.y + 180, 50);
     } else if (this.type === "square") {
-    } else if (this.type === "exitsquare") {
       fill(this.interactioncolor);
-      rect(this.x - 580, this.y - 445, 80, 65, 8);
+      rect(this.x, this.y, 80, 80, 8);
     }
   }
 }

@@ -12,27 +12,24 @@ export default class ParameterNetwork {
 
     //Output in Prozenten
     this.sustainableMethods = 20;
-    this.trawling = 79;
+    this.trawling = 80;
     this.ghostNets = 80;
 
     this.bycatch = 80;
-
 
     this.plastic = 80;
     this.co2 = 80;
 
     this.extraInput = -10;
 
-    this.divideFactor = 5000;
+    this.divideFactor = 3000;
   }
   inputToOutput() {
     this.sustainableMethods += this.subsidies / this.divideFactor;
     this.sustainableMethods -= this.ghostNets / this.divideFactor;
 
-
     this.ghostNets -= this.nets / this.divideFactor;
     this.ghostNets += this.trawling / this.divideFactor;
-
 
     this.trawling += this.fishingQuote / this.divideFactor;
     this.trawling += this.period / this.divideFactor;
@@ -76,7 +73,6 @@ export default class ParameterNetwork {
     } else if (this.co2 >= 100) {
       this.co2 = 100;
     }
-
   } //Samu: welche input parameter wirken sich auf welche output parameter aus, was sink und was steigt wenn was geändert wird
 
   testDisplay() {

@@ -21,119 +21,119 @@ export default class Visualize {
     this.coralArray = [
       new Coral(
         cube.x - 120 * cube.size,
-        cube.y + 320 * cube.size,
+        cube.y + 300 * cube.size,
         40 * cube.size,
         40 * cube.size,
         1
       ),
       new Coral(
         cube.x - 60 * cube.size,
-        cube.y + 260 * cube.size,
+        cube.y + 240 * cube.size,
         40 * cube.size,
         40 * cube.size,
         1
       ),
       new Coral(
         cube.x * cube.size,
-        cube.y + 330 * cube.size,
+        cube.y + 320 * cube.size,
         40 * cube.size,
         40 * cube.size,
         1
       ),
       new Coral(
         cube.x + 100 * cube.size,
-        cube.y + 260 * cube.size,
+        cube.y + 240 * cube.size,
         40 * cube.size,
         40 * cube.size,
         1
       ),
       new Coral(
         cube.x + 100 * cube.size,
-        cube.y + 150 * cube.size,
+        cube.y + 130 * cube.size,
         40 * cube.size,
         40 * cube.size,
         1
       ),
       new Coral(
         cube.x + 50 * cube.size,
-        cube.y + 200 * cube.size,
+        cube.y + 180 * cube.size,
         40 * cube.size,
         40 * cube.size,
         1
       ),
       new Coral(
         cube.x + 150 * cube.size,
-        cube.y + 200 * cube.size,
+        cube.y + 180 * cube.size,
         40 * cube.size,
         40 * cube.size,
         1
       ),
       new Coral(
         cube.x + 250 * cube.s,
-        cube.y + 210 * cube.s,
+        cube.y + 190 * cube.s,
         40 * cube.s,
         40 * cube.s,
         1
       ),
       new Coral(
         cube.x + 30 * cube.size,
-        cube.y + 100 * cube.size,
+        cube.y + 80 * cube.size,
         40 * cube.size,
         40 * cube.size,
         1
       ),
       new Coral(
         cube.x + 160 * cube.size,
-        cube.y + 120 * cube.size,
-        60 * cube.size,
-        80 * cube.size,
-        2
-      ),
-      new Coral(
-        cube.x + 160 * cube.size,
-        cube.y + 220 * cube.size,
-        60 * cube.size,
-        80 * cube.size,
-        2
-      ),
-      new Coral(
-        cube.x - 20 * cube.size,
-        cube.y + 200 * cube.size,
-        60 * cube.size,
-        80 * cube.size,
-        2
-      ),
-      new Coral(
-        cube.x - 130 * cube.size,
-        cube.y + 250 * cube.size,
-        60 * cube.size,
-        80 * cube.size,
-        2
-      ),
-      new Coral(
-        cube.x + 10 * cube.size,
-        cube.y + 250 * cube.size,
-        60 * cube.size,
-        80 * cube.size,
-        2
-      ),
-      new Coral(
-        cube.x - 70 * cube.size,
-        cube.y + 320 * cube.size,
-        60 * cube.size,
-        80 * cube.size,
-        2
-      ),
-      new Coral(
-        cube.x - 50 * cube.size,
         cube.y + 100 * cube.size,
         60 * cube.size,
         80 * cube.size,
         2
       ),
       new Coral(
+        cube.x + 160 * cube.size,
+        cube.y + 200 * cube.size,
+        60 * cube.size,
+        80 * cube.size,
+        2
+      ),
+      new Coral(
+        cube.x - 20 * cube.size,
+        cube.y + 180 * cube.size,
+        60 * cube.size,
+        80 * cube.size,
+        2
+      ),
+      new Coral(
+        cube.x - 130 * cube.size,
+        cube.y + 230 * cube.size,
+        60 * cube.size,
+        80 * cube.size,
+        2
+      ),
+      new Coral(
         cube.x + 10 * cube.size,
-        cube.y + 120 * cube.size,
+        cube.y + 230 * cube.size,
+        60 * cube.size,
+        80 * cube.size,
+        2
+      ),
+      new Coral(
+        cube.x - 70 * cube.size,
+        cube.y + 300 * cube.size,
+        60 * cube.size,
+        80 * cube.size,
+        2
+      ),
+      new Coral(
+        cube.x - 50 * cube.size,
+        cube.y + 80 * cube.size,
+        60 * cube.size,
+        80 * cube.size,
+        2
+      ),
+      new Coral(
+        cube.x + 10 * cube.size,
+        cube.y + 100 * cube.size,
         60 * cube.size,
         80 * cube.size,
         2
@@ -194,7 +194,8 @@ export default class Visualize {
     this.interactionDict.set("scrolldownbutton", [30, 150, 160, 255]);
     this.interactionDict.set("scrollupbutton", [30, 160, 160, 255]);
     this.interactionDict.set("tutorialbutton", [30, 170, 160, 255]);
-    this.interactionDict.set("backbutton", [30, 180, 160, 255]);
+    this.interactionDict.set("exittutorialbutton", [30, 180, 160, 255]);
+    this.interactionDict.set("exitgamebutton", [115, 144, 107, 255]);
     this.interactionDict.set("homebutton", [180, 233, 186, 255]);
     this.interactionDict.set("backtogamebutton", [223, 177, 10, 255]);
     this.interactionDict.set("chooseParameterFishingQuote", [223, 99, 93, 255]);
@@ -258,9 +259,23 @@ export default class Visualize {
         }
         this.keyAction.interactedObject = "nets";
       } else if (this.interactionKey === "startbutton") {
-        console.log("startClick");
+        helper.screenState = "game";
       } else if (this.interactionKey === "tutorialbutton") {
-        console.log("tutorialClick");
+        helper.screenState = "tutorial";
+      } else if (this.interactionKey === "exittutorialbutton") {
+        helper.screenState = "start";
+      } else if (this.interactionKey === "exitgamebutton") {
+        helper.screenState = "exitPopUp";
+      } else if (this.interactionKey === "homebutton") {
+        helper.screenState = "start";
+      } else if (this.interactionKey === "backtogamebutton") {
+        helper.screenState = "game";
+      } else if (this.interactionKey === "replaybutton") {
+        helper.screenState = "start";
+      } else if (this.interactionKey === "scrollupbutton") {
+        scroll(0, 0);
+      } else if (this.interactionKey === "scrolldownbutton") {
+        scroll(0, 1000);
       } else if (this.interactionKey === "chooseParameterFishingQuote") {
         this.keyAction.shownParameterScreen = "fishingQuote";
       } else if (this.interactionKey === "chooseParameterSubsidies") {
@@ -364,8 +379,8 @@ export default class Visualize {
       this.parameter.plastic * 0.4 +
       this.parameter.bycatch * 0.4 +
       this.parameter.co2 * 0.2;
-    this.coral = this.parameter.co2; //I am big Confusion
-    this.plastic = this.parameter.plastic; //I am also big Confusion
+    this.coral = this.parameter.co2;
+    this.plastic = this.parameter.plastic;
     console.log("coral: " + this.coral);
     console.log("co2: " + this.parameter.co2);
     this.bycatch = this.parameter.bycatch;
@@ -380,7 +395,9 @@ export default class Visualize {
               random(cube.x - 150 * cube.size, cube.x + 300 * cube.size),
               random(cube.y - 80 * cube.size, cube.y + 200 * cube.size),
               50 * cube.size,
-              50 * cube.size
+              50 * cube.size,
+              "right",
+              Math.round(random(1.5, 3.4))
             )
           );
         }
@@ -404,7 +421,7 @@ export default class Visualize {
         }
       } else if (this.coral === 100) {
         for (let i = 0; i < this.coralArray.length; i++) {
-          this.coralArray[i].changeColor(5);
+          this.coralArray[i].changeColor(4);
         }
       }
     }
@@ -412,7 +429,7 @@ export default class Visualize {
 
     for (let j = 0; j <= 100; j += 20) {
       if (this.plastic === 0) {
-        //display no array
+        this.plasticTeppich.stage = -1;
       } else if (this.plastic > 0 && this.plastic <= 20) {
         this.plasticTeppich.changeState(0);
       } else if (this.plastic > 20 && this.plastic <= 40) {
@@ -427,11 +444,17 @@ export default class Visualize {
     }
     //bycatch
     let bycatchNumEntities = 20;
+
     for (let j = 0; j <= 100; j += 10) {
       if (this.bycatch === 0 || (this.bycatch > j && this.bycatch <= j + 10)) {
         for (let i = this.bycatchArray.length; i < bycatchNumEntities; i++) {
           this.bycatchArray.push(
-            new Bycatch(random(100, 1000), random(100, 800), 100, 100)
+            new Bycatch(
+              random(cube.x - 100 * cube.size, cube.x + 80 * cube.size),
+              random(cube.y - 300 * cube.size, cube.y - 220 * cube.size),
+              50 * cube.size,
+              50 * cube.size
+            )
           ); //x,y,width,height muss noch angepasst werden
         }
       } else if (this.bycatch === 100) {
@@ -464,14 +487,9 @@ export default class Visualize {
     this.keyAction.parameterNetwork.inputToOutput();
     this.keyAction.parameterNetwork.testDisplay();
     this.calculateEntities();
-
     for (let i = 0; i < this.coralArray.length; i++) {
       this.coralArray[i].render(assets);
     }
-
-    /*for (let i = 0; i < this.bycatchArray.length; i++) {
-      this.bycatchArray[i].render();
-    }*/
 
     //net
     image(
@@ -490,8 +508,8 @@ export default class Visualize {
       732.6 * cube.size
     );
     for (let i = 0; i < this.fishArray.length; i++) {
-      this.fishArray[i].render();
       this.fishArray[i].move();
+      this.fishArray[i].render();
     }
     //Cube Layer 3
     image(
@@ -501,7 +519,15 @@ export default class Visualize {
       763.4 * cube.size,
       843.7 * cube.size
     );
-    this.plasticTeppich.render(assets);
+    for (let i = 0; i < this.bycatchArray.length; i++) {
+      this.bycatchArray[i].float();
+      this.bycatchArray[i].render();
+    }
+    if (this.plasticTeppich.stage >= 0) {
+      this.plasticTeppich.float();
+      this.plasticTeppich.render(assets);
+    }
+
     //boat
     image(
       assets.visual.default.boat,
@@ -535,16 +561,28 @@ export default class Visualize {
     });
     for (let i = 0; i < this.fishArray.length; i++) {
       this.fishArray[i].x -= 170;
+      this.fishArray[i].xMin -= 150;
+      this.fishArray[i].xWidth -= 270;
       this.fishArray[i].y += 200;
+
       this.fishArray[i].size = 0.7;
     }
     for (let i = 0; i < this.coralArray.length; i++) {
       this.coralArray[i].x -= 170;
-      this.coralArray[i].y += 200;
+      this.coralArray[i].y += 220;
       this.coralArray[i].size = 0.7;
     }
+    for (let i = 0; i < this.bycatchArray.length; i++) {
+      this.bycatchArray[i].x -= 170;
+      this.bycatchArray[i].xMin -= 150;
+      this.bycatchArray[i].xWidth -= 50;
+      this.bycatchArray[i].y += 220;
+      this.bycatchArray[i].size = 0.7;
+    }
     this.plasticTeppich.x -= 170;
-    this.plasticTeppich.y += 200;
+    this.plasticTeppich.y += 220;
+    this.plasticTeppich.xMin -= 180;
+    this.plasticTeppich.xWidth -= 50;
     this.plasticTeppich.size = 0.7;
   }
   moveCubeBack() {
@@ -557,16 +595,27 @@ export default class Visualize {
     this.keyAction.shownParameterScreen = "choose";
     for (let i = 0; i < this.fishArray.length; i++) {
       this.fishArray[i].x += 170;
+      this.fishArray[i].xMin += 170;
+      this.fishArray[i].xWidth += 270;
       this.fishArray[i].y -= 200;
       this.fishArray[i].size = 1;
     }
     for (let i = 0; i < this.coralArray.length; i++) {
       this.coralArray[i].x += 170;
-      this.coralArray[i].y -= 200;
+      this.coralArray[i].y -= 220;
       this.coralArray[i].size = 1;
     }
+    for (let i = 0; i < this.bycatchArray.length; i++) {
+      this.bycatchArray[i].x += 170;
+      this.bycatchArray[i].xMin += 170;
+      this.bycatchArray[i].xWidth += 50;
+      this.bycatchArray[i].y -= 220;
+      this.bycatchArray[i].size = 1;
+    }
     this.plasticTeppich.x += 170;
-    this.plasticTeppich.y -= 200;
+    this.plasticTeppich.xMin += 200;
+    this.plasticTeppich.xWidth += 50;
+    this.plasticTeppich.y -= 220;
     this.plasticTeppich.size = 1;
   }
 }
