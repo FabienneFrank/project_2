@@ -18,7 +18,7 @@ window.preload = preload;
 let resizeEndScreenCanvas = true;
 let helper = {
   clicked: false,
-  screenState: "game", // "start","tutorial","game","end"
+  screenState: "start", // "start","tutorial","game","end"
 };
 export let assets = {
   interactive: {
@@ -54,7 +54,9 @@ export let assets = {
       boat: "",
       fish1: "",
       fish2: "",
+      fish2Turned: "",
       fish3: "",
+      fish3Turned: "",
       house: "",
       bycatch1: "",
       bycatch2: "",
@@ -119,7 +121,13 @@ function preload() {
   assets.visual.default.boat = loadImage("assets/origamiBootGrün.png");
   assets.visual.default.fish1 = loadImage("assets/origamiFisch1Grün.png");
   assets.visual.default.fish2 = loadImage("assets/origamiFisch2Grün.png");
+  assets.visual.default.fish2Turned = loadImage(
+    "assets/origamiFisch2GrünTurned.png"
+  );
   assets.visual.default.fish3 = loadImage("assets/origamiFisch3Grün.png");
+  assets.visual.default.fish3Turned = loadImage(
+    "assets/origamiFisch3GrünGespiegelt.png"
+  );
   assets.visual.default.house = loadImage("assets/origamiHausGrün.png");
   assets.visual.default.bycatch1 = loadImage("assets/origamibeifang1.png");
   assets.visual.default.bycatch2 = loadImage("assets/origamibeifang2.png");
@@ -208,7 +216,7 @@ function preload() {
 
 export let cube = {
   x: width / 2,
-  y: height / 2,
+  y: 470,
   size: 1,
 };
 
@@ -221,14 +229,17 @@ function draw() {
   if (helper.screenState === "start") {
     screen.startScreen(helper);
   } else if (helper.screenState === "tutorial") {
-    screen.tutorial();
-  } else if (helper.screenState === "game") {
+    screen.tutorial(helper);
+  } else if (
+    helper.screenState === "game" ||
+    helper.screenState === "exitPopUp"
+  ) {
     screen.gameScreen(helper);
   } else if (helper.screenState === "end") {
     if (resizeEndScreenCanvas) {
       endscreenResize();
     }
-    screen.endScreen();
+    screen.endScreen(helper);
   }
 }
 function endscreenResize() {

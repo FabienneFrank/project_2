@@ -1,5 +1,5 @@
 import { assets } from "./sketch.js";
-
+import { cube } from "./sketch.js";
 export class Entities {
   constructor(x, y, width, height) {
     this.x = x;
@@ -10,21 +10,71 @@ export class Entities {
 }
 
 export class Fish extends Entities {
-  constructor(x, y, width, height) {
+  constructor(x, y, width, height, direction, type) {
     super(x, y, width, height);
     this.size = 1;
+    this.xWidth = 420;
+    this.xMin = cube.x - 200;
+    this.direction = direction; //left
+    this.type = type;
   }
   render() {
     //image(assets.visual.default.fish2, this.x, this.y, this.width, this.height); //bis zu 20 fische fisch 1
-    image(
-      assets.visual.default.fish3,
-      this.x * this.size,
-      this.y * this.size,
-      this.width * this.size,
-      this.height * this.size
-    ); //bis zu 20 fische fisch 2
+
+    if (this.direction === "right" && this.type === 3) {
+      image(
+        assets.visual.default.fish3,
+        this.x * this.size,
+        this.y * this.size,
+        this.width * this.size,
+        this.height * this.size
+      ); //bis zu 20 fische fisch 2
+    } else if (this.direction === "left" && this.type === 3) {
+      image(
+        assets.visual.default.fish3Turned,
+        this.x * this.size,
+        this.y * this.size,
+        this.width * this.size,
+        this.height * this.size
+      );
+    } else if (this.direction === "right" && this.type === 2) {
+      image(
+        assets.visual.default.fish2Turned,
+        this.x * this.size,
+        this.y * this.size,
+        this.width + 40 * this.size,
+        this.height * this.size
+      );
+    } else if (this.direction === "left" && this.type === 2) {
+      image(
+        assets.visual.default.fish2,
+        this.x * this.size,
+        this.y * this.size,
+        this.width + 40 * this.size,
+        this.height * this.size
+      );
+    }
   }
-  move() {} //schwimmbewegungen der Fische von vorne nach hinten und umdrehen
+  move() {
+    //fill(0, 255, 0);
+    //rect(this.xMin, this.yMin, this.xMax, this.yMax);
+    if (
+      this.x * this.size < this.xMin + this.xWidth * this.size &&
+      this.direction === "right"
+    ) {
+      this.x += 5;
+    } else if (this.x * this.size >= this.xMin + this.xWidth * this.size) {
+      this.direction = "left";
+    }
+    if (
+      this.x * this.size > this.xMin * this.size &&
+      this.direction === "left"
+    ) {
+      this.x -= 5;
+    } else if (this.x * this.size <= this.xMin * this.size) {
+      this.direction = "right";
+    }
+  } //schwimmbewegungen der Fische von vorne nach hinten und umdrehen
 }
 
 export class Coral extends Entities {
@@ -84,7 +134,10 @@ export class Plastic extends Entities {
   constructor(x, y, width, height) {
     super(x, y, width, height);
     this.size = 1;
-    this.stage = 0;
+    this.stage = -1;
+    this.xMin = cube.x - 200;
+    this.xWidth = 170;
+    this.direction = "right";
   }
   render(assets) {
     let plasticStages = [
@@ -103,30 +156,61 @@ export class Plastic extends Entities {
     );
   }
   changeState(stage) {
-    this.stage = stage - 1;
+    this.stage = stage;
   }
-  float() {} //floaten auf der Wasseroberfläche oder im Wasser?
+  float() {
+    if (this.x < this.xMin + this.xWidth && this.direction === "right") {
+      this.x += 1;
+    } else if (this.x >= this.xMin + this.xWidth) {
+      this.direction = "left";
+    }
+    if (this.x > this.xMin && this.direction === "left") {
+      this.x -= 1;
+      if (this.x > this.xMin + this.xWidth / 2) {
+        this.y -= 0.5;
+      } else {
+        this.y += 0.5;
+      }
+    } else if (this.x <= this.xMin) {
+      this.direction = "right";
+    }
+  } //floaten auf der Wasseroberfläche oder im Wasser?
 }
 
 export class Bycatch extends Entities {
   constructor(x, y, width, height) {
     super(x, y, width, height);
+    this.size = 1;
+    this.xMin = cube.x - 170;
+    this.xWidth = 300;
+    this.direction = "left";
   }
   render() {
     image(
       assets.visual.default.bycatch1,
-      this.x,
-      this.y,
-      this.width,
-      this.height
+      this.x * this.size,
+      this.y * this.size,
+      this.width * this.size,
+      this.height * this.size
     );
     /*image(
       assets.visual.default.bycatch2,
-      this.x,
-      this.y,
-      this.width,
-      this.height
+      this.x + 40 * this.size,
+      this.y + 40 * this.size,
+      this.width * this.size,
+      this.height * this.size
     );*/
   }
-  float() {} //floaten auf der Wasseroberfläche oder im Wasser?
+  float() {
+    if (this.x < this.xMin + this.xWidth && this.direction === "right") {
+      this.x += 1;
+    } else if (this.x >= this.xMin + this.xWidth) {
+      this.direction = "left";
+    }
+    if (this.x > this.xMin && this.direction === "left") {
+      this.x -= 1;
+    } else if (this.x <= this.xMin) {
+      this.direction = "right";
+    }
+  } //floaten auf der Wasseroberfläche oder im Wasser?
 }
