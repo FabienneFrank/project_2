@@ -166,7 +166,7 @@ export default class ParameterNetwork {
 
     if (this.winCounter >= 90) {
       this.winEnd = true;
-    } else if (this.loseCounter >= 90) {
+    } else if (this.loseCounter >= 240) {
       this.loseEnd = true;
     }
   }
