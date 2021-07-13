@@ -144,7 +144,7 @@ export default class Screens {
     fill(251, 84, 82);
     rect(this.width / 2 - 600, 50, 1200, 120, 20, 20, 0, 0);
     fill(247, 240, 226);
-    rect(this.width / 2 - 600, 170, 1200, 780, 0, 0, 20, 20);
+    rect(this.width / 2 - 600, 170, 1200, 700, 0, 0, 20, 20);
     fill(247, 240, 226);
     textFont(myFontBold);
     textAlign(CENTER);
