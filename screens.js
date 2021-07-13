@@ -8,12 +8,12 @@ export default class Screens {
   constructor(width, height) {
     this.width = width;
     this.height = height;
-    //--------------------------
+
     this.motivationtext = [
       "Das Ziel zu erreichen ist schwer aber ich sehe Du gibst dein Bestes!",
       "Super gemacht! Du hast das Ziel erreicht, weiter so!",
     ];
-    //--------------------------
+
     this.visualize = new Visualize(this.width / 2, this.height / 2);
 
     this.startButton = new Button(
@@ -107,7 +107,7 @@ export default class Screens {
     textSize(200);
     textFont(myFontBold);
     text("SCUBE", this.width / 2, 180);
-    //Einleitungstext
+    //introduction
     fill(247, 240, 226);
     textSize(60);
     text("Tauche ein in die Welt von morgen", this.width / 2, 260);
@@ -125,7 +125,7 @@ export default class Screens {
     fill(251, 84, 82);
     text("global politischen Akteurs", this.width / 2 - 90, 390);
     text("Agenda 2030", this.width / 2 - 205, 490);
-    //Start-Button und Tutorial-Button
+    //Start-Button and Tutorial-Button
     this.startButton.interactionarea();
     this.tutorialButton.interactionarea();
 
@@ -137,7 +137,7 @@ export default class Screens {
     this.visualize.checkKey();
     this.visualize.doForKey(helper);
     this.visualize.restart();
-  } // Jenny
+  }
 
   tutorial(helper) {
     noStroke();
@@ -230,7 +230,7 @@ export default class Screens {
     image(assets.visual.active.boat, this.width / 2 + 400, 480, 176.24, 93.2);
 
     image(assets.visual.default.boat, this.width / 2 - 580, 720, 176.24, 93.2);
-  } //Fabi
+  }
 
   gameScreen(helper) {
     this.visualize.displayInteractionArea();
@@ -252,7 +252,6 @@ export default class Screens {
   }
 
   endScreen(helper) {
-    //Scoreboard
     stroke(5, 85, 83);
     strokeWeight(5);
     fill(251, 84, 82);
@@ -276,10 +275,9 @@ export default class Screens {
     this.replayButton.default();
     this.scrollUpButton.scroll();
     this.scrollDownButton.scroll();
-    console.log(this.visualize.interactionKey);
     this.visualize.checkKey();
     this.visualize.doForKey(helper);
-    //Motivationstext
+    //motivational text
     fill(247, 240, 226);
     textSize(40);
     push();
@@ -292,7 +290,7 @@ export default class Screens {
     pop();
     //Scroll-Down-Button
 
-    //Tipps
+    //Tips
     fill(247, 240, 226);
     rect(this.width / 2 - 525, this.height / 2 + 600, 250, 250, 20);
     rect(this.width / 2 - 125, this.height / 2 + 600, 250, 250, 20);
@@ -302,7 +300,7 @@ export default class Screens {
     rect(this.width / 2 + 275, this.height / 2 + 1000, 250, 250, 20);
     this.displayTipps();
     //Scroll-Up-Button
-  } // Jenny: Get Score
+  }
 
   exitPopUp(helper) {
     //background
@@ -311,7 +309,7 @@ export default class Screens {
     rect(this.width / 2 - 450, this.height / 2 - 300, 900, 100, 20, 20, 0, 0);
     fill(247, 240, 226);
     rect(this.width / 2 - 450, this.height / 2 - 200, 900, 330, 0, 0, 20, 20);
-    //score-Anzeige
+    //display score
     textFont(myFontBold);
     textSize(80);
     fill(247, 240, 226);
@@ -322,7 +320,7 @@ export default class Screens {
       this.width / 2,
       this.height / 2 - 230
     );
-    //text
+    //endScreen text
     textSize(35);
     fill(5, 85, 83);
     text(
@@ -349,7 +347,7 @@ export default class Screens {
     textAlign(CENTER);
     noStroke();
     textFont(myFontBold);
-    //Tipp1
+    //Tip1
     if (
       mouseX > this.width / 2 - 525 &&
       mouseX < this.width / 2 - 275 &&
@@ -367,7 +365,7 @@ export default class Screens {
       textSize(70);
       text("Tipp #1", this.width / 2 - 400, this.height / 2 + 750);
     }
-    //Tipp2
+    //Tip2
     if (
       mouseX > this.width / 2 - 125 &&
       mouseX < this.width / 2 + 125 &&
@@ -386,7 +384,7 @@ export default class Screens {
       textSize(70);
       text("Tipp #2", this.width / 2, this.height / 2 + 750);
     }
-    //Tipp3
+    //Tip3
     if (
       mouseX > this.width / 2 + 275 &&
       mouseX < this.width / 2 + 525 &&
@@ -405,7 +403,7 @@ export default class Screens {
       textSize(70);
       text("Tipp #3", this.width / 2 + 400, this.height / 2 + 750);
     }
-    //Tipp4
+    //Tip4
     if (
       mouseX > this.width / 2 - 525 &&
       mouseX < this.width / 2 - 275 &&
@@ -431,7 +429,7 @@ export default class Screens {
       textSize(70);
       text("Tipp #4", this.width / 2 - 400, this.height / 2 + 1150);
     }
-    //Tipp5
+    //Tip5
     if (
       mouseX > this.width / 2 - 125 &&
       mouseX < this.width / 2 + 125 &&
@@ -448,7 +446,7 @@ export default class Screens {
       textSize(70);
       text("Tipp #5", this.width / 2, this.height / 2 + 1150);
     }
-    //Tipp6
+    //Tip6
     if (
       mouseX > this.width / 2 + 275 &&
       mouseX < this.width / 2 + 525 &&

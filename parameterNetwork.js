@@ -1,6 +1,6 @@
 export default class ParameterNetwork {
   constructor() {
-    //Input in Prozenten
+    //Input
     this.subsidies = 20;
     this.nets = 20;
     this.fishingQuote = 80;
@@ -9,7 +9,7 @@ export default class ParameterNetwork {
     this.portControl = 50;
     this.antiBait = 10;
 
-    //Output in Prozenten
+    //Output
     this.sustainableMethods = 20;
     this.trawling = 80;
     this.ghostNets = 80;
@@ -83,15 +83,15 @@ export default class ParameterNetwork {
     } else if (this.co2 >= 100) {
       this.co2 = 100;
     }
-  } //Samu: welche input parameter wirken sich auf welche output parameter aus, was sink und was steigt wenn was geändert wird
+  } //calculations, input to output
 
   testDisplay() {
-    // console.log("ghostNets: " + this.ghostNets);
-    // console.log("trawling: " + this.trawling);
-    // console.log("sustainableMethods: " + this.sustainableMethods);
-    // console.log("bycatch: " + this.bycatch);
+    console.log("ghostNets: " + this.ghostNets);
+    console.log("trawling: " + this.trawling);
+    console.log("sustainableMethods: " + this.sustainableMethods);
+    console.log("bycatch: " + this.bycatch);
     console.log("score: " + this.score);
-  }
+  } // for debugging
 
   calculateTrend(inputVariable, ifPositiv, forTrend) {
     let average;
@@ -130,7 +130,7 @@ export default class ParameterNetwork {
       difference = inputVariable - average;
       this.score += difference;
     }
-  }
+  } //checks if the value of the inputVariable rises or falls
 
   calculateScore() {
     this.calculateTrend(this.sustainableMethods, true);
@@ -140,7 +140,7 @@ export default class ParameterNetwork {
     this.calculateTrend(this.plastic, false);
     this.calculateTrend(this.co2, false);
     this.score /= 4;
-  } //was für ein score von 0% nachhaltigkeit bis 100% nachhaltigkeit wird durch summe aus output parameter erreicht; return score an visualize
+  }
 
   move() {
     if (this.moved === true) {
@@ -160,10 +160,6 @@ export default class ParameterNetwork {
       this.winCounter = 0;
       this.loseCounter += 1 / 30;
     }
-
-    // console.log("win: " + this.winCounter);
-    // console.log("lose: " + this.loseCounter);
-
     if (this.winCounter >= 90) {
       this.winEnd = true;
     } else if (this.loseCounter >= 240) {
@@ -235,7 +231,7 @@ export default class ParameterNetwork {
   }
 
   restart() {
-    //Input in Prozenten
+    //Input
     this.subsidies = 20;
     this.nets = 20;
     this.fishingQuote = 80;
@@ -244,7 +240,7 @@ export default class ParameterNetwork {
     this.portControl = 50;
     this.antiBait = 10;
 
-    //Output in Prozenten
+    //Output
     this.sustainableMethods = 20;
     this.trawling = 80;
     this.ghostNets = 80;

@@ -1,5 +1,3 @@
-import Screens from "./screens.js";
-//import gsap from "./gsap.min.js";
 /* 
 default: rgb(5, 85, 83)
 weniger default: rgb(83, 124, 123)
@@ -9,7 +7,9 @@ viel weniger rot: rgb(244, 151, 151)
 bisschen mehr rot: rgb(255, 127, 127)
 rot: rgb(251, 84, 82)
 */
+
 /*-----------------------------------*/
+import Screens from "./screens.js";
 
 window.draw = draw;
 window.mouseReleased = mouseReleased;
@@ -97,9 +97,7 @@ export let assets = {
     },
   },
 };
-/*-----------------------------------*/
 
-//lädt alle assets vor
 function preload() {
   assets.visual.active.boat = loadImage("assets/origamiBootRot.png");
   assets.visual.active.house = loadImage("assets/origamiHausRot.png");
@@ -198,21 +196,21 @@ function preload() {
   assets.visual.default.antiBait = loadImage("assets/antikoeder.png");
   assets.visual.default.nets = loadImage("assets/netz.png");
 
-  assets.interactive.boat = loadImage("assets/interaktionsBoot.png"); //(100,90,110,255) rgba des interaktions Bereichs
-  assets.interactive.house = loadImage("assets/interaktionsHaus.png"); //(100,80,120,255) rgba des interaktions Bereichs
-  assets.interactive.netMain = loadImage("assets/netzMainInteraction.png"); //(189,109,171,255)
-  assets.interactive.fish = loadImage("assets/fischInteraction.png"); //(207,203,219,255)
+  assets.interactive.boat = loadImage("assets/interaktionsBoot.png"); //(100,90,110,255) rgba
+  assets.interactive.house = loadImage("assets/interaktionsHaus.png"); //(100,80,120,255) rgba
+  assets.interactive.netMain = loadImage("assets/netzMainInteraction.png"); //(189,109,171,255) rgba
+  assets.interactive.fish = loadImage("assets/fischInteraction.png"); //(207,203,219,255) rgba
   assets.interactive.portControl = loadImage(
     "assets/hafenkontrollenInteraction.png"
-  ); //(164,158,163,255)
+  ); //(164,158,163,255) rgba
   assets.interactive.subsidies = loadImage(
     "assets/subventionenInteraction.png"
-  ); //(57,19,242,255)
-  assets.interactive.antiBait = loadImage("assets/antikoederInteraction.png"); //(112,101,33,255)
-  assets.interactive.nets = loadImage("assets/netzInteraction.png"); //(22, 88, 111, 255)
+  ); //(57,19,242,255) rgba
+  assets.interactive.antiBait = loadImage("assets/antikoederInteraction.png"); //(112,101,33,255) rgba
+  assets.interactive.nets = loadImage("assets/netzInteraction.png"); //(22, 88, 111, 255) rgba
   assets.interactive.protectionZone = loadImage(
     "assets/schutzzonenInteraction.png"
-  ); //(68, 57, 10, 255)
+  ); //(68, 57, 10, 255) rgba
 }
 
 export let cube = {
@@ -223,7 +221,7 @@ export let cube = {
 
 let screen = new Screens(width, height);
 
-screen.setup();
+screen.setup(); //loads interactionDictonary
 
 function draw() {
   background(5, 85, 83);
@@ -246,16 +244,19 @@ function draw() {
     screen.endScreen(helper);
   }
 }
+
 function endscreenResize() {
   resizeCanvas(width, height * 2, true);
   resizeEndScreenCanvas = false;
   resetResizeEndScreenCanvas = true;
 }
+
 function restart() {
   resizeCanvas(width, height / 2, true);
   resizeEndScreenCanvas = true;
   resetResizeEndScreenCanvas = false;
 }
+
 function mouseReleased() {
   helper.clicked = true;
 }

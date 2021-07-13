@@ -1,5 +1,6 @@
 import { assets } from "./sketch.js";
 import { cube } from "./sketch.js";
+
 export class Entities {
   constructor(x, y, width, height) {
     this.x = x;
@@ -18,9 +19,8 @@ export class Fish extends Entities {
     this.direction = direction; //left
     this.type = type;
   }
-  render() {
-    //image(assets.visual.default.fish2, this.x, this.y, this.width, this.height); //bis zu 20 fische fisch 1
 
+  render() {
     if (this.direction === "right" && this.type === 3) {
       image(
         assets.visual.default.fish3,
@@ -28,7 +28,7 @@ export class Fish extends Entities {
         this.y * this.size,
         this.width * this.size,
         this.height * this.size
-      ); //bis zu 20 fische fisch 2
+      );
     } else if (this.direction === "left" && this.type === 3) {
       image(
         assets.visual.default.fish3Turned,
@@ -55,6 +55,7 @@ export class Fish extends Entities {
       );
     }
   }
+
   move() {
     //fill(0, 255, 0);
     //rect(this.xMin, this.yMin, this.xMax, this.yMax);
@@ -74,7 +75,7 @@ export class Fish extends Entities {
     } else if (this.x * this.size <= this.xMin * this.size) {
       this.direction = "right";
     }
-  } //schwimmbewegungen der Fische von vorne nach hinten und umdrehen
+  } //fish movement
 }
 
 export class Coral extends Entities {
@@ -84,6 +85,7 @@ export class Coral extends Entities {
     this.type = type;
     this.size = 1;
   }
+
   render(assets) {
     let coral1colorStages = [
       assets.visual.default.coralStage1,
@@ -116,18 +118,11 @@ export class Coral extends Entities {
         this.height * this.size
       );
     }
-
-    /*image(
-      coral2colorStages[this.stage],
-      this.x + 200,
-      this.y,
-      this.width + 100,
-      this.height + 100
-    );*/
   }
+
   changeColor(stage) {
     this.stage = stage;
-  } //wenn der CO2 Gehalt steigt sollen die Farben der Koralle abgeschwächt werden (Illustrator verschiedene Farbversionen?)
+  }
 }
 
 export class Plastic extends Entities {
@@ -139,6 +134,7 @@ export class Plastic extends Entities {
     this.xWidth = 170;
     this.direction = "right";
   }
+
   render(assets) {
     let plasticStages = [
       assets.visual.default.plasticStage1,
@@ -155,9 +151,11 @@ export class Plastic extends Entities {
       this.height * this.size
     );
   }
+
   changeState(stage) {
     this.stage = stage;
   }
+
   float() {
     if (this.x < this.xMin + this.xWidth && this.direction === "right") {
       this.x += 1;
@@ -174,7 +172,7 @@ export class Plastic extends Entities {
     } else if (this.x <= this.xMin) {
       this.direction = "right";
     }
-  } //floaten auf der Wasseroberfläche oder im Wasser?
+  }
 }
 
 export class Bycatch extends Entities {
@@ -185,6 +183,7 @@ export class Bycatch extends Entities {
     this.xWidth = 300;
     this.direction = "left";
   }
+
   render() {
     image(
       assets.visual.default.bycatch1,
@@ -193,14 +192,8 @@ export class Bycatch extends Entities {
       this.width * this.size,
       this.height * this.size
     );
-    /*image(
-      assets.visual.default.bycatch2,
-      this.x + 40 * this.size,
-      this.y + 40 * this.size,
-      this.width * this.size,
-      this.height * this.size
-    );*/
   }
+
   float() {
     if (this.x < this.xMin + this.xWidth && this.direction === "right") {
       this.x += 1;
@@ -212,5 +205,5 @@ export class Bycatch extends Entities {
     } else if (this.x <= this.xMin) {
       this.direction = "right";
     }
-  } //floaten auf der Wasseroberfläche oder im Wasser?
+  }
 }
