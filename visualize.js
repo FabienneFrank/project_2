@@ -2,7 +2,6 @@ import { Fish, Coral, Plastic, Bycatch } from "./entities.js";
 import KeyAction from "./keyAction.js";
 import { assets } from "./sketch.js";
 import { cube } from "./sketch.js";
-// Samu Farbcode Dictionary
 
 export default class Visualize {
   constructor(x, y) {
@@ -180,14 +179,12 @@ export default class Visualize {
       1684 * 0.08 * cube.size,
       1962 * 0.08 * cube.size
     );
-  } //zeigt alle interactionAreas an (Boot,Netz,Hafen,Wasser)
-
-  //checkt Farben an der mausposition und pusht diese als Array [r,g,b,a]
-  colorCheck() {
-    this.mousePositionColor = get(mouseX, mouseY); //array
   }
 
-  //muss auserhalb der draw aufgerufen werden, setzt Keys und dazugehörige Farbcodes
+  colorCheck() {
+    this.mousePositionColor = get(mouseX, mouseY); //Array [r,g,b,a]
+  }
+
   interactionDictonary() {
     this.interactionDict.set("boat", [100, 90, 110, 255]);
     this.interactionDict.set("house", [100, 80, 120, 255]);
@@ -222,7 +219,6 @@ export default class Visualize {
     this.interactionDict.set("doNothing", [173, 227, 251, 255]);
   }
 
-  //vergleicht zwei Arrays
   compareArrays(array1, array2) {
     for (let i = 0; i <= array1.length; i++) {
       if (array1[i] !== array2[i]) return false;
@@ -230,7 +226,6 @@ export default class Visualize {
     return true;
   }
 
-  //Checkt ob ein farbcode gerade angesprochen wird, wenn ja: interactionKey gesetzt
   checkKey() {
     let intKey;
     this.interactionDict.forEach((value, key) => {
@@ -239,11 +234,11 @@ export default class Visualize {
       }
     });
     this.interactionKey = intKey;
-  }
+  } //checks if detected colorCode matches an interactionKey
 
   doForKey(helper) {
-    // erste if schleife alle click events, alles danach hover events
     if (helper.clicked === true) {
+      //first if checks for click, ifs outside of that one are for hover elements
       if (this.interactionKey === "boat") {
         if (this.keyAction.interactedObject === "none") {
           this.keyAction.parameterNetwork.moved = true;
@@ -397,7 +392,7 @@ export default class Visualize {
     } else {
       this.hover.boat = false;
     }
-  } //bei welchem Farbcode soll welche Methode in keyAction ausgeführt werden
+  } //actions for the interactionKeys
 
   calculateEntities() {
     this.fish =
@@ -406,8 +401,6 @@ export default class Visualize {
       this.parameter.co2 * 0.2;
     this.coral = this.parameter.co2;
     this.plastic = this.parameter.plastic;
-    console.log("coral: " + this.coral);
-    console.log("co2: " + this.parameter.co2);
     this.bycatch = this.parameter.bycatch;
     //fish
     let fishNumEntities = 20;
@@ -483,7 +476,7 @@ export default class Visualize {
               50 * cube.size,
               50 * cube.size
             )
-          ); //x,y,width,height muss noch angepasst werden
+          );
         }
       } else if (this.bycatch === 0) {
         this.bycatchArray = [];
@@ -491,7 +484,7 @@ export default class Visualize {
       bycatchNumEntities -= 2;
     }
     bycatchNumEntities = 20;
-  } //Jenny: output prozente aus parameterNetwork abfragen und in anzahl an entities umwandeln, (bsp: 80% plastik = 1 Fisch, 60% plastik = 3 fische), anzahl entities in array speichern (3 Fische -> array[fisch1=new Fisch,fisch2=new Fisch,fisch3=new Fisch])
+  } // calculates the number of displayed entities
 
   displayVisuals(helper) {
     //Cube Layer 1
@@ -514,7 +507,6 @@ export default class Visualize {
     }
     this.keyAction.parameterNetwork.inputToOutput();
     this.keyAction.parameterNetwork.calculateScore();
-    this.keyAction.parameterNetwork.testDisplay();
     this.calculateEntities();
     for (let i = 0; i < this.coralArray.length; i++) {
       this.coralArray[i].render(assets);
@@ -620,7 +612,8 @@ export default class Visualize {
     ) {
       helper.screenState = "end";
     }
-  } //zeigt die Oberfläche der Simulation an
+  }
+
   moveCube() {
     gsap.to(cube, {
       duration: 0.2,
@@ -654,6 +647,7 @@ export default class Visualize {
     this.plasticTeppich.xWidth -= 50;
     this.plasticTeppich.size = 0.7;
   }
+
   moveCubeBack() {
     gsap.to(cube, {
       duration: 0.2,
@@ -687,6 +681,7 @@ export default class Visualize {
     this.plasticTeppich.y -= 220;
     this.plasticTeppich.size = 1;
   }
+
   restart() {
     if (this.keyAction.interactedObject != "none") {
       this.moveCubeBack();

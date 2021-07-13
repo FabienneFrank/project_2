@@ -11,7 +11,6 @@ export default class Button {
   }
 
   default() {
-    //default
     if (this.lable === "Start" || this.lable === "Replay") {
       fill(5, 85, 83);
     } else if (this.lable === "Home" || this.lable === "Back to Game") {
@@ -26,7 +25,7 @@ export default class Button {
     textSize(60);
     textFont(myFontBold);
     text(this.lable, this.x, this.y + 60);
-  } // start, replay, home, back to game
+  } //Button used for: start, replay, home, back to game
 
   exit() {
     stroke(this.color);
@@ -42,10 +41,9 @@ export default class Button {
     line(this.x + 20, this.y + 40, this.x + 60, this.y + 40); //line middle
     line(this.x + 20, this.y + 40, this.x + 40, this.y + 60); //line top
     line(this.x + 20, this.y + 40, this.x + 40, this.y + 20); //line bottom
-  } //exit arrow
+  } //exit arrow Button
 
   help() {
-    //tutorial
     fill(5, 85, 83);
     strokeWeight(3);
     stroke(this.color);
@@ -73,7 +71,7 @@ export default class Button {
       line(this.x - 10, this.y + 185, this.x, this.y + 175);
       line(this.x + 10, this.y + 185, this.x, this.y + 175);
     }
-  } //endscreen runde buttons zu Tips scrollen
+  } //round scroll buttons for endscreen
 
   interactionarea() {
     if (this.type === "default") {
@@ -87,4 +85,4 @@ export default class Button {
       rect(this.x, this.y, 80, 80, 8);
     }
   }
-}
+} //sets InteractionArea for button every style
