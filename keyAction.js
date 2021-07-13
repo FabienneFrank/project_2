@@ -45,4 +45,10 @@ export default class KeyAction {
     this.parameterNetwork.protectionZone =
       this.parameterBox.clickedProtectionZone * 20;
   }
+  restart() {
+    this.interactedObject = "none";
+    this.shownParameterScreen = "choose";
+    this.parameterBox.restart();
+    this.parameterNetwork.restart();
+  }
 }

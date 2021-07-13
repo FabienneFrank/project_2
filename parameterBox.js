@@ -716,4 +716,15 @@ export default class ParameterBox {
     this.x = x;
     this.y = y;
   }
+
+  restart() {
+    this.chosenIndex = 0;
+    this.clickedPortControl = 5;
+    this.clickedFishingQuote = 8;
+    this.clickedSubsidies = 2;
+    this.clickedAntiBait = 1;
+    this.clickedNets = 3;
+    this.clickedPeriod = 8;
+    this.clickedProtectionZone = 2;
+  }
 }
