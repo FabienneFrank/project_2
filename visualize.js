@@ -580,9 +580,10 @@ export default class Visualize {
       this.bycatchArray[i].size = 0.7;
     }
     this.plasticTeppich.x -= 170;
-    this.plasticTeppich.y += 220;
+
     this.plasticTeppich.xMin -= 180;
     this.plasticTeppich.xWidth -= 50;
+    this.plasticTeppich.y += 220;
     this.plasticTeppich.size = 0.7;
   }
   moveCubeBack() {
@@ -595,7 +596,7 @@ export default class Visualize {
     this.keyAction.shownParameterScreen = "choose";
     for (let i = 0; i < this.fishArray.length; i++) {
       this.fishArray[i].x += 170;
-      this.fishArray[i].xMin += 170;
+      this.fishArray[i].xMin += 150;
       this.fishArray[i].xWidth += 270;
       this.fishArray[i].y -= 200;
       this.fishArray[i].size = 1;
@@ -607,13 +608,13 @@ export default class Visualize {
     }
     for (let i = 0; i < this.bycatchArray.length; i++) {
       this.bycatchArray[i].x += 170;
-      this.bycatchArray[i].xMin += 170;
+      this.bycatchArray[i].xMin += 150;
       this.bycatchArray[i].xWidth += 50;
       this.bycatchArray[i].y -= 220;
       this.bycatchArray[i].size = 1;
     }
     this.plasticTeppich.x += 170;
-    this.plasticTeppich.xMin += 200;
+    this.plasticTeppich.xMin += 180;
     this.plasticTeppich.xWidth += 50;
     this.plasticTeppich.y -= 220;
     this.plasticTeppich.size = 1;
