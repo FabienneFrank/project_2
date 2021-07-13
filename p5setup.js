@@ -12,5 +12,5 @@ window.addEventListener("resize", function () {
 });
 
 new p5();
-var width = windowWidth;
-var height = windowHeight;
+var width = 1920;
+var height = 1080;
