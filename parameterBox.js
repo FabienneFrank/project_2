@@ -165,7 +165,7 @@ export default class ParameterBox {
       text("Antiköder", this.x + this.width / 2, this.y + 560);
     }
     noTint();
-  }
+  } //display possibilities for changeable parameters
 
   portControl(helper) {
     stroke(83, 124, 123);

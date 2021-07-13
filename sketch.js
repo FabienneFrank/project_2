@@ -1,7 +1,7 @@
 /* 
-default: rgb(5, 85, 83)
-weniger default: rgb(83, 124, 123)
-noch weniger default: rgb(145, 155, 154)
+petrol: rgb(5, 85, 83)
+weniger petrol: rgb(83, 124, 123)
+noch weniger petrol: rgb(145, 155, 154)
 creme: rgb(247, 240, 226)
 viel weniger rot: rgb(244, 151, 151)
 bisschen mehr rot: rgb(255, 127, 127)

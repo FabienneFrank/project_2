@@ -1,4 +1,3 @@
-let myFontDefault = loadFont("font/D-DINCondensed.otf");
 let myFontBold = loadFont("font/D-DINCondensed-Bold.otf");
 export default class Button {
   constructor(x, y, color, lable, interactioncolor, type) {
@@ -41,7 +40,7 @@ export default class Button {
     line(this.x + 20, this.y + 40, this.x + 60, this.y + 40); //line middle
     line(this.x + 20, this.y + 40, this.x + 40, this.y + 60); //line top
     line(this.x + 20, this.y + 40, this.x + 40, this.y + 20); //line bottom
-  } //exit arrow Button
+  } //Button used for: exit game, exit tutorial
 
   help() {
     fill(5, 85, 83);
@@ -51,7 +50,7 @@ export default class Button {
     textSize(40);
     textFont(myFontBold);
     text(this.lable, this.x, this.y + 195);
-  } //start screen to tutorial
+  } //Button used for: tutorial
 
   scroll() {
     if (this.lable === "ScrollDown" || this.lable === "ScrollUp") {
@@ -71,7 +70,7 @@ export default class Button {
       line(this.x - 10, this.y + 185, this.x, this.y + 175);
       line(this.x + 10, this.y + 185, this.x, this.y + 175);
     }
-  } //round scroll buttons for endscreen
+  } //Button used for: scroll down, scroll up
 
   interactionarea() {
     if (this.type === "default") {

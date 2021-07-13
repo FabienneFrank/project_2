@@ -57,8 +57,6 @@ export class Fish extends Entities {
   }
 
   move() {
-    //fill(0, 255, 0);
-    //rect(this.xMin, this.yMin, this.xMax, this.yMax);
     if (
       this.x * this.size < this.xMin + this.xWidth * this.size &&
       this.direction === "right"
@@ -172,7 +170,7 @@ export class Plastic extends Entities {
     } else if (this.x <= this.xMin) {
       this.direction = "right";
     }
-  }
+  } //plastic floating on water surface
 }
 
 export class Bycatch extends Entities {
@@ -205,5 +203,5 @@ export class Bycatch extends Entities {
     } else if (this.x <= this.xMin) {
       this.direction = "right";
     }
-  }
+  } //bycatch floating on water surface
 }
