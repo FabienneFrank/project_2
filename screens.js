@@ -11,8 +11,7 @@ export default class Screens {
     //--------------------------
     this.motivationtext = [
       "Das Ziel zu erreichen ist schwer aber ich sehe Du gibst dein Bestes!",
-      "Super gemacht! Das Ziel ist erreicht, aber kannst du das Ziel auch übertreffen?",
-      "WOW das lief ja fantastisch!",
+      "Super gemacht! Du hast das Ziel erreicht, weiter so!",
     ];
     //--------------------------
     this.visualize = new Visualize(this.width / 2, this.height / 2);
@@ -137,6 +136,7 @@ export default class Screens {
 
     this.visualize.checkKey();
     this.visualize.doForKey(helper);
+    this.visualize.restart();
   } // Jenny
 
   tutorial(helper) {
@@ -263,7 +263,11 @@ export default class Screens {
     textFont(myFontBold);
     textSize(60);
     textAlign(CENTER);
-    text("Score: " + "x", this.width / 2, this.height / 2 - 390);
+    text(
+      "Score: " + round(this.visualize.keyAction.parameterNetwork.score),
+      this.width / 2,
+      this.height / 2 - 390
+    );
     //Replay-Button
     this.replayButton.interactionarea();
     this.scrollUpButton.interactionarea();
@@ -278,17 +282,14 @@ export default class Screens {
     //Motivationstext
     fill(247, 240, 226);
     textSize(40);
-    if (this.visualize.keyAction.parameterNetwork.calculateScore() <= -100) {
+    push();
+    noStroke();
+    if (this.visualize.keyAction.parameterNetwork.loseEnd) {
       text(this.motivationtext[0], this.width / 2, this.height / 2 + 250);
-    } else if (
-      this.visualize.keyAction.parameterNetwork.calculateScore() <= 800
-    ) {
+    } else if (this.visualize.keyAction.parameterNetwork.winEnd) {
       text(this.motivationtext[1], this.width / 2, this.height / 2 + 250);
-    } else if (
-      this.visualize.keyAction.parameterNetwork.calculateScore() > 800
-    ) {
-      text(this.motivationtext[2], this.width / 2, this.height / 2 + 250);
     }
+    pop();
     //Scroll-Down-Button
 
     //Tipps
@@ -316,7 +317,11 @@ export default class Screens {
     fill(247, 240, 226);
     textAlign(CENTER);
     noStroke();
-    text("Score: " + "x", this.width / 2, this.height / 2 - 230);
+    text(
+      "Score: " + round(this.visualize.keyAction.parameterNetwork.score),
+      this.width / 2,
+      this.height / 2 - 230
+    );
     //text
     textSize(35);
     fill(5, 85, 83);

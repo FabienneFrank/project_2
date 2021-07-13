@@ -148,8 +148,11 @@ export default class Visualize {
     );
     this.bycatch;
     this.bycatchArray = [];
-    this.hover = false;
-    this.click = false;
+    this.hover = {
+      boat: false,
+      nets: false,
+      house: false,
+    };
   }
 
   displayInteractionArea() {
@@ -204,12 +207,10 @@ export default class Visualize {
     this.interactionDict.set("chooseParameterPeriod", [191, 117, 96, 255]);
     this.interactionDict.set("chooseParameterNets", [161, 71, 143, 255]);
     this.interactionDict.set("chooseParameterAntiBait", [114, 59, 65, 255]);
-    this.interactionDict.set("chooseParameterProtectionZone", [
-      158,
-      148,
-      210,
-      255,
-    ]);
+    this.interactionDict.set(
+      "chooseParameterProtectionZone",
+      [158, 148, 210, 255]
+    );
     this.interactionDict.set("changeFangquote", [207, 203, 219, 255]);
     this.interactionDict.set("changePortControl", [164, 158, 163, 255]);
     this.interactionDict.set("changeSubsidies", [57, 19, 242, 255]);
@@ -245,16 +246,19 @@ export default class Visualize {
     if (helper.clicked === true) {
       if (this.interactionKey === "boat") {
         if (this.keyAction.interactedObject === "none") {
+          this.keyAction.parameterNetwork.moved = true;
           this.moveCube();
         }
         this.keyAction.interactedObject = "boat";
       } else if (this.interactionKey === "house") {
         if (this.keyAction.interactedObject === "none") {
+          this.keyAction.parameterNetwork.moved = true;
           this.moveCube();
         }
         this.keyAction.interactedObject = "port";
       } else if (this.interactionKey === "net") {
         if (this.keyAction.interactedObject === "none") {
+          this.keyAction.parameterNetwork.moved = true;
           this.moveCube();
         }
         this.keyAction.interactedObject = "nets";
@@ -298,7 +302,8 @@ export default class Visualize {
         ) {
           this.keyAction.parameterBox.clickedFishingQuote -= 1;
         } else {
-          this.keyAction.parameterBox.clickedFishingQuote = this.keyAction.parameterBox.chosenIndex;
+          this.keyAction.parameterBox.clickedFishingQuote =
+            this.keyAction.parameterBox.chosenIndex;
         }
       } else if (this.interactionKey === "changePortControl") {
         if (
@@ -308,7 +313,8 @@ export default class Visualize {
         ) {
           this.keyAction.parameterBox.clickedPortControl -= 1;
         } else {
-          this.keyAction.parameterBox.clickedPortControl = this.keyAction.parameterBox.chosenIndex;
+          this.keyAction.parameterBox.clickedPortControl =
+            this.keyAction.parameterBox.chosenIndex;
         }
       } else if (this.interactionKey === "changeSubsidies") {
         if (
@@ -318,7 +324,8 @@ export default class Visualize {
         ) {
           this.keyAction.parameterBox.clickedSubsidies -= 1;
         } else {
-          this.keyAction.parameterBox.clickedSubsidies = this.keyAction.parameterBox.chosenIndex;
+          this.keyAction.parameterBox.clickedSubsidies =
+            this.keyAction.parameterBox.chosenIndex;
         }
       } else if (this.interactionKey === "changeAntiBait") {
         if (
@@ -328,7 +335,8 @@ export default class Visualize {
         ) {
           this.keyAction.parameterBox.clickedAntiBait -= 1;
         } else {
-          this.keyAction.parameterBox.clickedAntiBait = this.keyAction.parameterBox.chosenIndex;
+          this.keyAction.parameterBox.clickedAntiBait =
+            this.keyAction.parameterBox.chosenIndex;
         }
       } else if (this.interactionKey === "changeNets") {
         if (
@@ -338,7 +346,8 @@ export default class Visualize {
         ) {
           this.keyAction.parameterBox.clickedNets -= 1;
         } else {
-          this.keyAction.parameterBox.clickedNets = this.keyAction.parameterBox.chosenIndex;
+          this.keyAction.parameterBox.clickedNets =
+            this.keyAction.parameterBox.chosenIndex;
         }
       } else if (this.interactionKey === "changeProtectionZone") {
         if (
@@ -348,7 +357,8 @@ export default class Visualize {
         ) {
           this.keyAction.parameterBox.clickedProtectionZone -= 1;
         } else {
-          this.keyAction.parameterBox.clickedProtectionZone = this.keyAction.parameterBox.chosenIndex;
+          this.keyAction.parameterBox.clickedProtectionZone =
+            this.keyAction.parameterBox.chosenIndex;
         }
       } else if (this.interactionKey === "periodUpButton") {
         if (this.keyAction.parameterBox.clickedPeriod < 12) {
@@ -363,14 +373,29 @@ export default class Visualize {
           this.keyAction.parameterBox.clickedPeriod = 1;
         }
       } else if (this.keyAction.interactedObject != "none") {
+        this.keyAction.parameterNetwork.moved = false;
         this.moveCubeBack();
         this.keyAction.interactedObject = "none";
       }
       helper.clicked = false;
-    } else if (this.interactionKey === "startbutton") {
-      console.log("startHover");
-    } else if (this.interactionKey === "tutorialbutton") {
-      console.log("tutorialHover");
+    }
+
+    if (this.interactionKey === "house") {
+      this.hover.house = true;
+    } else {
+      this.hover.house = false;
+    }
+
+    if (this.interactionKey === "net") {
+      this.hover.nets = true;
+    } else {
+      this.hover.nets = false;
+    }
+
+    if (this.interactionKey === "boat") {
+      this.hover.boat = true;
+    } else {
+      this.hover.boat = false;
     }
   } //bei welchem Farbcode soll welche Methode in keyAction ausgeführt werden
 
@@ -445,8 +470,11 @@ export default class Visualize {
     //bycatch
     let bycatchNumEntities = 20;
 
-    for (let j = 0; j <= 100; j += 10) {
-      if (this.bycatch === 0 || (this.bycatch > j && this.bycatch <= j + 10)) {
+    for (let j = 100; j >= 0; j -= 10) {
+      if (
+        this.bycatch === 100 ||
+        (this.bycatch < j && this.bycatch >= j - 10)
+      ) {
         for (let i = this.bycatchArray.length; i < bycatchNumEntities; i++) {
           this.bycatchArray.push(
             new Bycatch(
@@ -457,7 +485,7 @@ export default class Visualize {
             )
           ); //x,y,width,height muss noch angepasst werden
         }
-      } else if (this.bycatch === 100) {
+      } else if (this.bycatch === 0) {
         this.bycatchArray = [];
       }
       bycatchNumEntities -= 2;
@@ -485,6 +513,7 @@ export default class Visualize {
       this.keyAction.waterSurface(helper);
     }
     this.keyAction.parameterNetwork.inputToOutput();
+    this.keyAction.parameterNetwork.calculateScore();
     this.keyAction.parameterNetwork.testDisplay();
     this.calculateEntities();
     for (let i = 0; i < this.coralArray.length; i++) {
@@ -492,13 +521,24 @@ export default class Visualize {
     }
 
     //net
-    image(
-      assets.visual.default.nets,
-      cube.x - 200 * cube.size,
-      cube.y - 290 * cube.size,
-      660 * 0.6 * cube.size,
-      501 * 0.9 * cube.size
-    );
+    if (this.hover.nets === true) {
+      image(
+        assets.visual.active.nets,
+        cube.x - 200 * cube.size,
+        cube.y - 290 * cube.size,
+        660 * 0.6 * cube.size,
+        501 * 0.9 * cube.size
+      );
+    } else {
+      image(
+        assets.visual.default.nets,
+        cube.x - 200 * cube.size,
+        cube.y - 290 * cube.size,
+        660 * 0.6 * cube.size,
+        501 * 0.9 * cube.size
+      );
+    }
+
     //Cube Layer 2
     image(
       assets.visual.default.cubeLayer2,
@@ -511,6 +551,7 @@ export default class Visualize {
       this.fishArray[i].move();
       this.fishArray[i].render();
     }
+
     //Cube Layer 3
     image(
       assets.visual.default.cubeLayer3,
@@ -529,13 +570,24 @@ export default class Visualize {
     }
 
     //boat
-    image(
-      assets.visual.default.boat,
-      cube.x + 150 * cube.size,
-      cube.y - 370 * cube.size,
-      2203 * 0.08 * cube.size,
-      1165 * 0.08 * cube.size
-    );
+    if (this.hover.boat === true) {
+      image(
+        assets.visual.active.boat,
+        cube.x + 150 * cube.size,
+        cube.y - 370 * cube.size,
+        2203 * 0.08 * cube.size,
+        1165 * 0.08 * cube.size
+      );
+    } else {
+      image(
+        assets.visual.default.boat,
+        cube.x + 150 * cube.size,
+        cube.y - 370 * cube.size,
+        2203 * 0.08 * cube.size,
+        1165 * 0.08 * cube.size
+      );
+    }
+
     //house
     image(
       assets.visual.default.house,
@@ -544,13 +596,30 @@ export default class Visualize {
       1684 * 0.075 * cube.size,
       1962 * 0.075 * cube.size
     );
-    image(
-      assets.visual.default.house,
-      cube.x - 350 * cube.size,
-      cube.y - 400 * cube.size,
-      1684 * 0.08 * cube.size,
-      1962 * 0.08 * cube.size
-    );
+    if (this.hover.house === true) {
+      image(
+        assets.visual.active.house,
+        cube.x - 350 * cube.size,
+        cube.y - 400 * cube.size,
+        1684 * 0.08 * cube.size,
+        1962 * 0.08 * cube.size
+      );
+    } else {
+      image(
+        assets.visual.default.house,
+        cube.x - 350 * cube.size,
+        cube.y - 400 * cube.size,
+        1684 * 0.08 * cube.size,
+        1962 * 0.08 * cube.size
+      );
+    }
+    this.keyAction.parameterNetwork.display();
+    if (
+      this.keyAction.parameterNetwork.loseEnd === true ||
+      this.keyAction.parameterNetwork.winEnd === true
+    ) {
+      helper.screenState = "end";
+    }
   } //zeigt die Oberfläche der Simulation an
   moveCube() {
     gsap.to(cube, {
@@ -595,7 +664,7 @@ export default class Visualize {
     this.keyAction.shownParameterScreen = "choose";
     for (let i = 0; i < this.fishArray.length; i++) {
       this.fishArray[i].x += 170;
-      this.fishArray[i].xMin += 170;
+      this.fishArray[i].xMin += 150;
       this.fishArray[i].xWidth += 270;
       this.fishArray[i].y -= 200;
       this.fishArray[i].size = 1;
@@ -607,15 +676,30 @@ export default class Visualize {
     }
     for (let i = 0; i < this.bycatchArray.length; i++) {
       this.bycatchArray[i].x += 170;
-      this.bycatchArray[i].xMin += 170;
+      this.bycatchArray[i].xMin += 150;
       this.bycatchArray[i].xWidth += 50;
       this.bycatchArray[i].y -= 220;
       this.bycatchArray[i].size = 1;
     }
     this.plasticTeppich.x += 170;
-    this.plasticTeppich.xMin += 200;
+    this.plasticTeppich.xMin += 180;
     this.plasticTeppich.xWidth += 50;
     this.plasticTeppich.y -= 220;
     this.plasticTeppich.size = 1;
+  }
+  restart() {
+    if (this.keyAction.interactedObject != "none") {
+      this.moveCubeBack();
+    }
+    this.bycatch;
+    this.bycatchArray = [];
+    this.plastic;
+    this.mousePositionColor = [];
+    this.interactionKey = "";
+    this.parameter = this.keyAction.parameterNetwork;
+    this.fish;
+    this.fishArray = [];
+    this.coral;
+    this.keyAction.restart();
   }
 }

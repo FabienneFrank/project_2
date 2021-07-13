@@ -12,10 +12,11 @@ rot: rgb(251, 84, 82)
 /*-----------------------------------*/
 
 window.draw = draw;
-window.mouseClicked = mouseClicked;
+window.mouseReleased = mouseReleased;
 window.preload = preload;
 
 let resizeEndScreenCanvas = true;
+let resetResizeEndScreenCanvas = false;
 let helper = {
   clicked: false,
   screenState: "start", // "start","tutorial","game","end"
@@ -227,6 +228,9 @@ screen.setup();
 function draw() {
   background(5, 85, 83);
   if (helper.screenState === "start") {
+    if (resetResizeEndScreenCanvas) {
+      restart();
+    }
     screen.startScreen(helper);
   } else if (helper.screenState === "tutorial") {
     screen.tutorial(helper);
@@ -245,7 +249,13 @@ function draw() {
 function endscreenResize() {
   resizeCanvas(width, height * 2, true);
   resizeEndScreenCanvas = false;
+  resetResizeEndScreenCanvas = true;
 }
-function mouseClicked() {
+function restart() {
+  resizeCanvas(width, height / 2, true);
+  resizeEndScreenCanvas = true;
+  resetResizeEndScreenCanvas = false;
+}
+function mouseReleased() {
   helper.clicked = true;
 }
