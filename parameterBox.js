@@ -1,6 +1,7 @@
-let myFontBold = loadFont("font/D-DINCondensed-Bold.otf");
 import { assets } from "./sketch.js";
 import Button from "./button.js";
+
+let myFontBold = loadFont("font/D-DINCondensed-Bold.otf");
 
 export default class ParameterBox {
   constructor(x, y, width, height, visualize) {
@@ -9,6 +10,7 @@ export default class ParameterBox {
     this.width = width;
     this.height = height;
     this.visualize = visualize;
+
     this.periodUP = new Button(
       this.x + this.width / 2,
       this.y + 140,
@@ -17,6 +19,7 @@ export default class ParameterBox {
       color(175, 22, 181, 255),
       "round"
     );
+
     this.periodDOWN = new Button(
       this.x + this.width / 2,
       this.y + 380,
@@ -25,6 +28,7 @@ export default class ParameterBox {
       color(18, 44, 22, 255),
       "round"
     );
+
     this.chosenIndex = 0;
     this.clickedPortControl = 5;
     this.clickedFishingQuote = 8;
@@ -34,6 +38,7 @@ export default class ParameterBox {
     this.clickedPeriod = 8;
     this.clickedProtectionZone = 2;
   }
+
   background(clickedObject, shownScreen, helper) {
     //background
     stroke(5, 85, 83);
@@ -70,9 +75,8 @@ export default class ParameterBox {
     } else if (clickedObject === "waterSurface") {
       this.protectionZone(helper);
     }
-
-    //string mit parameter übergeben und abfragen
   }
+
   chooseParameter(clickedObject) {
     //headline
     textFont(myFontBold);
@@ -161,7 +165,8 @@ export default class ParameterBox {
       text("Antiköder", this.x + this.width / 2, this.y + 560);
     }
     noTint();
-  }
+  } //display possibilities for changeable parameters
+
   portControl(helper) {
     stroke(83, 124, 123);
     strokeWeight(5);
@@ -230,6 +235,7 @@ export default class ParameterBox {
     this.portControlClicked();
     this.chosenIndex = 0;
   }
+
   period(helper) {
     //picture array stages
     let periodArray = [
@@ -267,7 +273,7 @@ export default class ParameterBox {
       314,
       150
     );
-    //zeitraumUP Button
+    //periodUP Button
 
     this.periodUP.interactionarea();
     this.periodDOWN.interactionarea();
@@ -277,6 +283,7 @@ export default class ParameterBox {
     this.visualize.checkKey();
     this.visualize.doForKey(helper);
   }
+
   fishingQuote(helper) {
     stroke(83, 124, 123);
     strokeWeight(5);
@@ -347,6 +354,7 @@ export default class ParameterBox {
     this.fishingQuoteClicked();
     this.chosenIndex = 0;
   }
+
   subsidies(helper) {
     stroke(83, 124, 123);
     strokeWeight(5);
@@ -419,6 +427,7 @@ export default class ParameterBox {
     this.subsidiesClicked();
     this.chosenIndex = 0;
   }
+
   protectionZone(helper) {
     //picture array stages
     let protectionZoneArray = [
@@ -477,6 +486,7 @@ export default class ParameterBox {
     this.visualize.checkKey();
     this.visualize.doForKey(helper);
   }
+
   nets(helper) {
     stroke(83, 124, 123);
     strokeWeight(5);
@@ -539,6 +549,7 @@ export default class ParameterBox {
     this.netsClicked();
     this.chosenIndex = 0;
   }
+
   antiBait(helper) {
     stroke(83, 124, 123);
     strokeWeight(5);
@@ -607,6 +618,7 @@ export default class ParameterBox {
     this.antiBaitClicked();
     this.chosenIndex = 0;
   }
+
   interactionarea(clickedObject) {
     noStroke();
 
@@ -629,6 +641,7 @@ export default class ParameterBox {
       rect(this.x + this.width / 2 - 200, this.y + 440, 400, 200, 20);
     }
   }
+
   portControlClicked() {
     let x = this.x;
     let y = this.y;
@@ -650,6 +663,7 @@ export default class ParameterBox {
     this.x = x;
     this.y = y;
   }
+
   fishingQuoteClicked() {
     let x = this.x;
     let y = this.y;
@@ -671,6 +685,7 @@ export default class ParameterBox {
     this.x = x;
     this.y = y;
   }
+
   subsidiesClicked() {
     let x = this.x;
     let y = this.y;
@@ -686,6 +701,7 @@ export default class ParameterBox {
     this.x = x;
     this.y = y;
   }
+
   antiBaitClicked() {
     let x = this.x;
     let y = this.y;
@@ -701,6 +717,7 @@ export default class ParameterBox {
     this.x = x;
     this.y = y;
   }
+
   netsClicked() {
     let x = this.x;
     let y = this.y;
@@ -715,5 +732,16 @@ export default class ParameterBox {
     }
     this.x = x;
     this.y = y;
+  }
+
+  restart() {
+    this.chosenIndex = 0;
+    this.clickedPortControl = 5;
+    this.clickedFishingQuote = 8;
+    this.clickedSubsidies = 2;
+    this.clickedAntiBait = 1;
+    this.clickedNets = 3;
+    this.clickedPeriod = 8;
+    this.clickedProtectionZone = 2;
   }
 }

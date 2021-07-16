@@ -1,24 +1,25 @@
-import Screens from "./screens.js";
-//import gsap from "./gsap.min.js";
 /* 
-default: rgb(5, 85, 83)
-weniger default: rgb(83, 124, 123)
-noch weniger default: rgb(145, 155, 154)
+petrol: rgb(5, 85, 83)
+weniger petrol: rgb(83, 124, 123)
+noch weniger petrol: rgb(145, 155, 154)
 creme: rgb(247, 240, 226)
 viel weniger rot: rgb(244, 151, 151)
 bisschen mehr rot: rgb(255, 127, 127)
 rot: rgb(251, 84, 82)
 */
+
 /*-----------------------------------*/
+import Screens from "./screens.js";
 
 window.draw = draw;
-window.mouseClicked = mouseClicked;
+window.mouseReleased = mouseReleased;
 window.preload = preload;
 
 let resizeEndScreenCanvas = true;
+let resetResizeEndScreenCanvas = false;
 let helper = {
   clicked: false,
-  screenState: "game", // "start","tutorial","game","end"
+  screenState: "start", // "start","tutorial","game","end"
 };
 export let assets = {
   interactive: {
@@ -54,7 +55,9 @@ export let assets = {
       boat: "",
       fish1: "",
       fish2: "",
+      fish2Turned: "",
       fish3: "",
+      fish3Turned: "",
       house: "",
       bycatch1: "",
       bycatch2: "",
@@ -94,9 +97,7 @@ export let assets = {
     },
   },
 };
-/*-----------------------------------*/
 
-//lädt alle assets vor
 function preload() {
   assets.visual.active.boat = loadImage("assets/origamiBootRot.png");
   assets.visual.active.house = loadImage("assets/origamiHausRot.png");
@@ -119,7 +120,13 @@ function preload() {
   assets.visual.default.boat = loadImage("assets/origamiBootGrün.png");
   assets.visual.default.fish1 = loadImage("assets/origamiFisch1Grün.png");
   assets.visual.default.fish2 = loadImage("assets/origamiFisch2Grün.png");
+  assets.visual.default.fish2Turned = loadImage(
+    "assets/origamiFisch2GrünTurned.png"
+  );
   assets.visual.default.fish3 = loadImage("assets/origamiFisch3Grün.png");
+  assets.visual.default.fish3Turned = loadImage(
+    "assets/origamiFisch3GrünGespiegelt.png"
+  );
   assets.visual.default.house = loadImage("assets/origamiHausGrün.png");
   assets.visual.default.bycatch1 = loadImage("assets/origamibeifang1.png");
   assets.visual.default.bycatch2 = loadImage("assets/origamibeifang2.png");
@@ -189,52 +196,67 @@ function preload() {
   assets.visual.default.antiBait = loadImage("assets/antikoeder.png");
   assets.visual.default.nets = loadImage("assets/netz.png");
 
-  assets.interactive.boat = loadImage("assets/interaktionsBoot.png"); //(100,90,110,255) rgba des interaktions Bereichs
-  assets.interactive.house = loadImage("assets/interaktionsHaus.png"); //(100,80,120,255) rgba des interaktions Bereichs
-  assets.interactive.netMain = loadImage("assets/netzMainInteraction.png"); //(189,109,171,255)
-  assets.interactive.fish = loadImage("assets/fischInteraction.png"); //(207,203,219,255)
+  assets.interactive.boat = loadImage("assets/interaktionsBoot.png"); //(100,90,110,255) rgba
+  assets.interactive.house = loadImage("assets/interaktionsHaus.png"); //(100,80,120,255) rgba
+  assets.interactive.netMain = loadImage("assets/netzMainInteraction.png"); //(189,109,171,255) rgba
+  assets.interactive.fish = loadImage("assets/fischInteraction.png"); //(207,203,219,255) rgba
   assets.interactive.portControl = loadImage(
     "assets/hafenkontrollenInteraction.png"
-  ); //(164,158,163,255)
+  ); //(164,158,163,255) rgba
   assets.interactive.subsidies = loadImage(
     "assets/subventionenInteraction.png"
-  ); //(57,19,242,255)
-  assets.interactive.antiBait = loadImage("assets/antikoederInteraction.png"); //(112,101,33,255)
-  assets.interactive.nets = loadImage("assets/netzInteraction.png"); //(22, 88, 111, 255)
+  ); //(57,19,242,255) rgba
+  assets.interactive.antiBait = loadImage("assets/antikoederInteraction.png"); //(112,101,33,255) rgba
+  assets.interactive.nets = loadImage("assets/netzInteraction.png"); //(22, 88, 111, 255) rgba
   assets.interactive.protectionZone = loadImage(
     "assets/schutzzonenInteraction.png"
-  ); //(68, 57, 10, 255)
+  ); //(68, 57, 10, 255) rgba
 }
 
 export let cube = {
   x: width / 2,
-  y: height / 2,
+  y: 470,
   size: 1,
 };
 
 let screen = new Screens(width, height);
 
-screen.setup();
+screen.setup(); //loads interactionDictonary
 
 function draw() {
   background(5, 85, 83);
   if (helper.screenState === "start") {
+    if (resetResizeEndScreenCanvas) {
+      restart();
+    }
     screen.startScreen(helper);
   } else if (helper.screenState === "tutorial") {
-    screen.tutorial();
-  } else if (helper.screenState === "game") {
+    screen.tutorial(helper);
+  } else if (
+    helper.screenState === "game" ||
+    helper.screenState === "exitPopUp"
+  ) {
     screen.gameScreen(helper);
   } else if (helper.screenState === "end") {
     if (resizeEndScreenCanvas) {
       endscreenResize();
     }
-    screen.endScreen();
+    screen.endScreen(helper);
   }
 }
+
 function endscreenResize() {
   resizeCanvas(width, height * 2, true);
   resizeEndScreenCanvas = false;
+  resetResizeEndScreenCanvas = true;
 }
-function mouseClicked() {
+
+function restart() {
+  resizeCanvas(width, height / 2, true);
+  resizeEndScreenCanvas = true;
+  resetResizeEndScreenCanvas = false;
+}
+
+function mouseReleased() {
   helper.clicked = true;
 }
